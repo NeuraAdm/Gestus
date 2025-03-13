@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Facebook, PhoneCall, Instagram, Youtube } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -15,19 +15,19 @@ const Footer = () => {
         <div>
         <h4 className="text-lg font-semibold mb-4">Siguenos</h4>
         <div className="flex space-x-4">
-          <a href="#" className="text-gray-300 hover:text-white">
+          <a href="https://www.facebook.com/profile.php?id=100091988004048" className="text-gray-300 hover:text-white">
           <span className="sr-only">Facebook</span>
           <Facebook className="h-6 w-6" />
           </a>
-          <a href="#" className="text-gray-300 hover:text-white">
-          <span className="sr-only">Twitter</span>
-          <Twitter className="h-6 w-6" />
+          <a href="https://api.whatsapp.com/send/?phone=%2B573107186513&text=Hola!%2C%20Quisiera%20saber%20m%C3%A1s%20sobre%20sus%20servicios&type=phone_number&app_absent=0" className="text-gray-300 hover:text-white">
+          <span className="sr-only">WhatsApp</span>
+          <PhoneCall className="h-6 w-6" />
           </a>
-          <a href="#" className="text-gray-300 hover:text-white">
+          <a href="https://www.instagram.com/gestus_int/" className="text-gray-300 hover:text-white">
           <span className="sr-only">Instagram</span>
           <Instagram className="h-6 w-6" />
           </a>
-          <a href="#" className="text-gray-300 hover:text-white">
+          <a href="https://www.youtube.com/@GESTUSSOLUCIONESINTEGRALES" className="text-gray-300 hover:text-white">
           <span className="sr-only">YouTube</span>
           <Youtube className="h-6 w-6" />
           </a>

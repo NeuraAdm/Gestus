@@ -10,7 +10,7 @@ const Hero = () => {
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                 <span className="block xl:inline">Soluciones Integrales</span>{' '}
-                <span className="block bg-gradient-to-r from-blue-500 to-green-500 text-white bg-clip-text text-transparent xl:inline">Asesorias y Consultorias</span>
+                <span className="block bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent xl:inline">Asesorias y Consultorias</span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
               Somos expertos en asesoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo (SG-SST), cumpliendo con normativas ISO y colombianas. También ofrecemos asesoría jurídica en derecho laboral, con experiencia en diagnóstico, implementación y mantenimiento en los sectores industrial y de servicios.              </p>
