@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <img className="h-16 w-auto" src="images/logo3.png" alt="Logo Gestus" />
+              <img className="h-16 w-auto" src="assets/logo-uLaua0tn.jpg" alt="Logo Gestus" />
             </div>
             <div className="hidden md:ml-14 md:flex md:space-x-8">
               <a href="#about" className="inline-flex items-center text-lg   font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
