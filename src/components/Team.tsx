@@ -1,46 +1,65 @@
 import React from 'react';
-import image1 from '../../images/logo1.1.jpg';
+import image1 from '../../images/yeral.jpeg';
+import image2 from '../../images/oscar.jpeg';
+import image3 from '../../images/johana.jpeg';
+import image4 from '../../images/mariana.jpeg';
+import image5 from '../../images/daniel.jpeg';
+import image6 from '../../images/daniela.jpeg';
+import image7 from '../../images/fabian.jpeg';
+import image8 from '../../images/katerine.jpeg';
+import image9 from '../../images/jessica.jpeg';
+import image10 from '../../images/estefani.jpeg';
 
 const team = [
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
+    name: 'Yeral Gomez',
+    role: 'Directora Ejecutiva - CEO',
     img: image1,
   },
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
-    img: image1,
+    name: 'Oscar Marin',
+    role: 'Lider Administrativo y Financiero',
+    img: image2,
   },
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
-    img: image1,
+    name: 'Johana Bermudez',
+    role: 'Contadora',
+    img: image3,
   },
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
-    img: image1,
+    name: 'Mariana Morales',
+    role: 'Analista de Gestion',
+    img: image4,
   },
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
-    img: image1,
+    name: 'Daniel Contreras',
+    role: 'Inspectot SST',
+    img: image5,
   },
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
-    img: image1,
+    name: 'Daniela Gallego',
+    role: 'Psicologa',
+    img: image6,
   },
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
-    img: image1,
+    name: 'Fabian Cardona',
+    role: 'Bombero ESP - SST',
+    img: image7,
   },
   {
-    name: 'Juan Pablo Arias',
-    role: 'CEO & Founder - Ingeniero de Software',
-    img: image1,
+    name: 'Katerine Villota',
+    role: 'Fisioterapeuta',
+    img: image8,
+  },
+  {
+    name: 'Jessica Gomez',
+    role: 'ESP - Gestion Humana',
+    img: image9,
+  },
+  {
+    name: 'Estefani Lopez',
+    role: 'Facilitadora SST',
+    img: image10,
   },
 ];
 
@@ -62,7 +81,7 @@ const Team = () => {
             <div key={index} className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2">
               <div className="relative">
                 <img
-                    className="h-64 w-full object-cover transform hover:scale-105 transition duration-300 ease-in-out"
+                    className="h-64 w-full object-contain transform hover:scale-105 transition duration-300 ease-in-out"
                     src={member.img}
                     alt={member.name}
                 />
