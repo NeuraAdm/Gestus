@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat SST - Asistente Inteligente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Simulación de plataforma de fondo */
+        .platform-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f5f7fa;
+            z-index: -1;
+        }
+
+        /* Botón flotante */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .chat-button svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .chat-button.active {
+            background: #ff4757;
+        }
+
+        /* Contenedor del chat */
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 999;
+            animation: slideUp 0.3s ease;
+        }
+
+        .chat-container.active {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header del chat */
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .chat-header-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .chat-header-info p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* Área de mensajes */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .message-content {
+            max-width: 75%;
+        }
+
+        .message-bubble {
+            padding: 12px 16px;
+            border-radius: 16px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .message.bot .message-bubble {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #6c757d;
+            margin-top: 4px;
+            padding: 0 4px;
+        }
+
+        /* Evidencias subidas */
+        .evidence-preview {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .evidence-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .evidence-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .evidence-item.file {
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        /* Botón de descarga de informe */
+        .download-report {
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .download-report:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+
+        /* Sugerencias rápidas */
+        .quick-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .suggestion-chip {
+            padding: 8px 14px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .suggestion-chip:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            gap: 4px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        /* Input área */
+        .chat-input-area {
+            padding: 16px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .file-preview-area {
+            display: none;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .file-preview-area.active {
+            display: flex;
+        }
+
+        .preview-item {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid #dee2e6;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-item.file {
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .remove-preview {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 20px;
+            height: 20px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .action-btn {
+            width: 38px;
+            height: 38px;
+            border: none;
+            background: #f1f3f5;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #667eea;
+        }
+
+        .action-btn:hover {
+            background: #e9ecef;
+            transform: scale(1.05);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: none;
+            max-height: 100px;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .send-btn {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Scrollbar personalizado */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #5568d3;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .chat-container {
+                width: calc(100vw - 20px);
+                height: calc(100vh - 120px);
+                right: 10px;
+                bottom: 90px;
+            }
+
+            .chat-button {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        /* Hidden file input */
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="platform-background"></div>
+
+    <!-- Botón flotante -->
+    <div class="chat-button" id="chatButton">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+        </svg>
+    </div>
+
+    <!-- Contenedor del chat -->
+    <div class="chat-container" id="chatContainer">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="chat-avatar">🛡️</div>
+            <div class="chat-header-info">
+                <h3>Asistente SST</h3>
+                <p>Gestión de evidencias e informes</p>
+            </div>
+        </div>
+
+        <!-- Mensajes -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="message-bubble">
+                        ¡Hola! Soy tu asistente de Seguridad y Salud en el Trabajo. Puedo ayudarte a:
+                        <br><br>
+                        • Generar informes basados en evidencias<br>
+                        • Analizar fotografías de incidentes<br>
+                        • Crear documentos estandarizados<br>
+                        • Consultar normativas SST
+                    </div>
+                    <div class="quick-suggestions">
+                        <div class="suggestion-chip" data-text="Generar informe de inspección">📋 Informe de inspección</div>
+                        <div class="suggestion-chip" data-text="Reportar incidente">⚠️ Reportar incidente</div>
+                        <div class="suggestion-chip" data-text="Consultar normativa">📚 Consultar normativa</div>
+                    </div>
+                    <div class="message-time">Ahora</div>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+
+        <!-- Área de input -->
+        <div class="chat-input-area">
+            <div class="file-preview-area" id="filePreviewArea"></div>
+            <div class="input-wrapper">
+                <div class="input-actions">
+                    <button class="action-btn" id="attachBtn" title="Adjuntar archivo">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                        </svg>
+                    </button>
+                    <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx">
+                </div>
+                <textarea 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Describe el incidente o solicita un informe..."
+                    rows="1"
+                ></textarea>
+                <button class="send-btn" id="sendBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado de la aplicación
+        const state = {
+            isOpen: false,
+            files: [],
+            conversationHistory: []
+        };
+
+        // Elementos del DOM
+        const chatButton = document.getElementById('chatButton');
+        const chatContainer = document.getElementById('chatContainer');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const attachBtn = document.getElementById('attachBtn');
+        const fileInput = document.getElementById('fileInput');
+        const filePreviewArea = document.getElementById('filePreviewArea');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Toggle chat
+        chatButton.addEventListener('click', () => {
+            state.isOpen = !state.isOpen;
+            chatContainer.classList.toggle('active');
+            chatButton.classList.toggle('active');
+            
+            if (state.isOpen) {
+                chatInput.focus();
+            }
+        });
+
+        // Sugerencias rápidas
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('suggestion-chip')) {
+                const text = e.target.dataset.text;
+                chatInput.value = text;
+                chatInput.focus();
+            }
+        });
+
+        // Adjuntar archivos
+        attachBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                state.files.push(file);
+                addFilePreview(file);
+            });
+            fileInput.value = '';
+        });
+
+        function addFilePreview(file) {
+            filePreviewArea.classList.add('active');
+            
+            const previewItem = document.createElement('div');
+            previewItem.className = file.type.startsWith('image/') ? 'preview-item' : 'preview-item file';
+            
+            if (file.type.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                previewItem.appendChild(img);
+            } else {
+                previewItem.textContent = '📄';
+            }
+            
+            const removeBtn = document.createElement('div');
+            removeBtn.className = 'remove-preview';
+            removeBtn.textContent = '×';
+            removeBtn.onclick = () => {
+                const index = state.files.indexOf(file);
+                state.files.splice(index, 1);
+                previewItem.remove();
+                if (state.files.length === 0) {
+                    filePreviewArea.classList.remove('active');
+                }
+            };
+            
+            previewItem.appendChild(removeBtn);
+            filePreviewArea.appendChild(previewItem);
+        }
+
+        // Auto-resize textarea
+        chatInput.addEventListener('input', () => {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = chatInput.scrollHeight + 'px';
+        });
+
+        // Enviar mensaje
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text && state.files.length === 0) return;
+
+            // Crear mensaje del usuario
+            const userMessage = {
+                type: 'user',
+                text: text,
+                files: [...state.files],
+                timestamp: new Date()
+            };
+
+            addMessage(userMessage);
+            
+            // Limpiar input
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+            state.files = [];
+            filePreviewArea.innerHTML = '';
+            filePreviewArea.classList.remove('active');
+
+            // Simular respuesta del bot
+            setTimeout(() => {
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    handleBotResponse(userMessage);
+                }, 2000);
+            }, 500);
+        }
+
+        function addMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${message.type}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = message.type === 'bot' ? '🤖' : '👤';
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = message.text;
+            
+            content.appendChild(bubble);
+            
+            // Agregar evidencias si existen
+            if (message.files && message.files.length > 0) {
+                const evidencePreview = document.createElement('div');
+                evidencePreview.className = 'evidence-preview';
+                
+                message.files.forEach(file => {
+                    const item = document.createElement('div');
+                    item.className = file.type.startsWith('image/') ? 'evidence-item' : 'evidence-item file';
+                    
+                    if (file.type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
+                        item.appendChild(img);
+                    } else {
+                        item.textContent = '📄';
+                    }
+                    
+                    evidencePreview.appendChild(item);
+                });
+                
+                content.appendChild(evidencePreview);
+            }
+            
+            // Agregar botón de descarga si es respuesta del bot con informe
+            if (message.type === 'bot' && message.hasReport) {
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-report';
+                downloadBtn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/>
+                    </svg>
+                    Descargar Informe
+                `;
+                downloadBtn.onclick = () => generateReport(message);
+                content.appendChild(downloadBtn);
+            }
+            
+            const time = document.createElement('div');
+            time.className = 'message-time';
+            time.textContent = formatTime(message.timestamp);
+            content.appendChild(time);
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            
+            chatMessages.insertBefore(messageDiv, typingIndicator);
+            scrollToBottom();
+        }
+
+        function handleBotResponse(userMessage) {
+            let response = {
+                type: 'bot',
+                text: '',
+                timestamp: new Date(),
+                hasReport: false
+            };
+
+            const text = userMessage.text.toLowerCase();
+
+            if (userMessage.files.length > 0) {
+                response.text = `He recibido ${userMessage.files.length} archivo(s) de evidencia. `;
+                
+                if (text.includes('informe') || text.includes('reporte') || text.includes('documento')) {
+                    response.text += `Voy a generar un informe estandarizado basado en las evidencias proporcionadas. El documento incluirá:\n\n• Descripción del evento\n• Análisis de evidencias fotográficas\n• Medidas correctivas sugeridas\n• Cumplimiento normativo\n\nPuedes descargarlo haciendo clic en el botón de abajo.`;
+                    response.hasReport = true;
+                } else {
+                    response.text += `He analizado las evidencias. ¿Deseas que genere un informe formal con esta información?`;
+                }
+            } else if (text.includes('informe')) {
+                response.text = 'Para generar un informe, por favor adjunta las evidencias fotográficas o documentales del caso. Puedes hacerlo usando el botón 📎.';
+            } else if (text.includes('incidente')) {
+                response.text = 'Entendido. Para documentar el incidente correctamente, necesito:\n\n1. Fotografías del lugar\n2. Descripción detallada\n3. Fecha y hora del evento\n\nPor favor adjunta las evidencias disponibles.';
+            } else if (text.includes('normativa')) {
+                response.text = 'Puedo ayudarte con información sobre:\n\n• Resolución 0312 de 2019\n• Decreto 1072 de 2015\n• NTC-OHSAS 18001\n• ISO 45001\n\n¿Sobre cuál necesitas información específica?';
+            } else {
+                response.text = '¿En qué puedo ayudarte? Puedo generar informes, analizar evidencias o consultar normativas de SST.';
+            }
+
+            addMessage(response);
+        }
+
+        function generateReport(message) {
+            // Aquí se integraría con la API de Claude para generar el documento
+            alert('Generando informe... Esta funcionalidad se integraría con la API de Claude para crear documentos Word/PDF personalizados.');
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.classList.add('active');
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.classList.remove('active');
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function formatTime(date) {
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return 'Ahora';
+            if (diff < 3600000) return `Hace ${Math.floor(diff / 60000)} min`;
+            
+            return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+        }
+    </script>
+</body>
+</html>

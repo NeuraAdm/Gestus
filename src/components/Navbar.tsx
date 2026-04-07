@@ -14,7 +14,7 @@ const Navbar = () => {
             </div>
             <div className="hidden md:ml-14 md:flex md:space-x-8">
               <a href="#about" className="inline-flex items-center text-lg   font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
-                Acerca De
+                Quienes Somos
               </a>
               <a href="#services" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
                 Servicios
