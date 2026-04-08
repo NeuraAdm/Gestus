@@ -1,5 +1,6 @@
 import React from 'react';
 import { Facebook, PhoneCall, Instagram, Youtube } from 'lucide-react';
+import logoImage from '../../images/logo.jpg';
 
 const Footer = () => {
   return (
@@ -7,7 +8,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="md:flex md:items-center md:justify-between">
         <div className="flex justify-center md:justify-start space-x-6">
-        <img className="h-12 w-auto" src="/dist/assets/logo-uLaua0tn.jpg" alt="Logo Gestus" />
+        <img className="h-12 w-auto" src={logoImage} alt="Logo Gestus" />
         <span className="text-2xl font-bold">Gestus Soluciones Integrales S.A.S</span>
         </div>
         <div className="mt-6 md:mt-0">
