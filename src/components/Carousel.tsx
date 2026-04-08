@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-// Definir las rutas de las imágenes de la galería
-const basePath = process.env.NODE_ENV === 'production' ? '/assets' : '/dist/assets';
-const galleryImages: string[] = [];
-for (let i = 1; i <= 43; i++) {
-    galleryImages.push(`${basePath}/${i}.jpeg`);
-}
+// Importa la galería para que Vite procese y emita rutas correctas en build.
+const galleryModules = import.meta.glob('../../images/galeria/*.jpeg', {
+    eager: true,
+    import: 'default',
+}) as Record<string, string>;
+
+const galleryImages = Object.entries(galleryModules)
+    .sort(([pathA], [pathB]) => {
+        const fileA = pathA.split('/').pop() ?? '';
+        const fileB = pathB.split('/').pop() ?? '';
+        const numA = Number(fileA.replace('.jpeg', ''));
+        const numB = Number(fileB.replace('.jpeg', ''));
+        return numA - numB;
+    })
+    .map(([, url]) => url);
 
 const Carousel = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
