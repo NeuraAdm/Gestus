@@ -303,7 +303,7 @@ const ServiceModal: React.FC<ModalProps> = ({ service, onClose }) => {
                   )}
                   
                   {/* Step number */}
-                  <div className="inline left-0 top-0 w-6 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-600 to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg lg:text-xl shadow-lg">
+                  <div className="left-0 top-0 w-6 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-600 to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg lg:text-xl shadow-lg">
                     {index + 1}
                   </div>
                   
@@ -352,6 +352,19 @@ const ServiceModal: React.FC<ModalProps> = ({ service, onClose }) => {
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+  const slugify = (value: string) =>
+    value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+  const getServiceId = (title: string) => `servicio-${slugify(title)}`;
+  const serviceAnchors = services.map((service) => ({
+    id: getServiceId(service.title),
+    title: service.title,
+  }));
 
   const handleOpenModal = (service: typeof services[0]) => {
     setSelectedService(service);
@@ -371,10 +384,25 @@ const Services = () => {
         </div>
         <p className="mt-4 text-2xl text-gray-600 text-center">Nuestros servicios están diseñados para ayudar a las empresas a cumplir con los requisitos legales y mejorar la seguridad y salud en el trabajo.
         </p>
+        <nav className="mt-6 flex flex-wrap justify-center gap-3" aria-label="Navegacion de servicios">
+          {serviceAnchors.map((anchor) => (
+            <a
+              key={anchor.id}
+              href={`#${anchor.id}`}
+              className="rounded-full border border-emerald-200 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-400 hover:text-emerald-900"
+            >
+              {anchor.title}
+            </a>
+          ))}
+        </nav>
         <div className="mt-16">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
             {services.map((service, index) => (
-              <div key={index} className="relative flex w-80 flex-col rounded-xl bg-gradient-to-br from-white to-gray-50 bg-clip-border text-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div
+                key={index}
+                id={getServiceId(service.title)}
+                className="relative flex w-80 flex-col rounded-xl bg-gradient-to-br from-white to-gray-50 bg-clip-border text-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
                 <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-clip-border shadow-lg group">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 opacity-90">
 

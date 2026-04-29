@@ -4,7 +4,7 @@ import heroImage from '../../images/gestus5.jpg';
 
 const Hero = () => {
   return (
-    <div className="relative bg-white overflow-hidden border-b border-gray-900">
+    <section id="inicio" className="relative bg-white overflow-hidden border-b border-gray-900">
       <div className="max-w-7xl mx-auto">
         <div className="relative z-15 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
@@ -40,7 +40,7 @@ const Hero = () => {
           alt="Equipo de Trabajo"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

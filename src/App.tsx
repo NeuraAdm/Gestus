@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services'
 import About from './components/About';
-import Carousel from './components/Carousel';
+import FAQ from './components/FAQ';
 import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -14,10 +14,10 @@ function App() {
     <>
       <div className="min-h-screen bg-white">
         <Navbar />
-        <Hero />  
+        <Hero />
         <About />
-        <Carousel />
         <Services />
+        <FAQ />
         <Team />
         <Contact />
         <Footer />

@@ -1,3 +1,6 @@
 node_modules
-.qodo
 dist
+.env
+.github
+.vite
+images/
