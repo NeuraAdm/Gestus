@@ -1,8 +1,6 @@
 import { slugify } from '../utils/slug';
 
 type UploadResponse = {
-  uploadUrl?: string;
-  uploadURL?: string;
   publicUrl?: string;
   publicURL?: string;
   public?: string;
@@ -37,63 +35,59 @@ const buildObjectKey = (file: File, options: UploadOptions) => {
 };
 
 export const uploadToR2 = async (file: File, options: UploadOptions = {}) => {
-  const endpoint = import.meta.env.VITE_R2_SIGN_ENDPOINT as string | undefined;
+  const rawEndpoint =
+    typeof import.meta !== 'undefined' && import.meta.env && (import.meta.env as any).VITE_R2_SIGN_ENDPOINT
+      ? String((import.meta.env as any).VITE_R2_SIGN_ENDPOINT)
+      : (typeof process !== 'undefined' && process.env && process.env.VITE_R2_SIGN_ENDPOINT)
+      ? String(process.env.VITE_R2_SIGN_ENDPOINT)
+      : '';
+
+  const endpoint = rawEndpoint.replace(/\/$/, '');
+
   if (!endpoint) {
-    throw new Error('Falta configurar VITE_R2_SIGN_ENDPOINT para subir a R2.');
+    throw new Error('Falta configurar VITE_R2_SIGN_ENDPOINT para subir a R2. Añade la variable en el .env y reconstruye.');
   }
 
-  if (endpoint.includes('r2.cloudflarestorage.com')) {
-    throw new Error('VITE_R2_SIGN_ENDPOINT debe ser la URL del Worker, no la del bucket.');
+  if (endpoint.includes('r2.dev') || endpoint.includes('r2.cloudflarestorage.com')) {
+    throw new Error('VITE_R2_SIGN_ENDPOINT debe ser la URL del Worker, no la URL publica del bucket R2.');
   }
 
   const { key, fileName, baseSlug, role } = buildObjectKey(file, options);
 
-  // Step 1: Request presigned URL from Worker
-  const presignResponse = await fetch(endpoint, {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('key', key);
+  formData.append('filename', fileName);
+  formData.append('contentType', file.type || 'application/octet-stream');
+  formData.append('size', String(file.size));
+  formData.append('slug', baseSlug);
+  formData.append('role', role);
+
+  if (typeof options.index === 'number') {
+    formData.append('index', String(options.index));
+  }
+
+  const uploadResponse = await fetch(endpoint, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      key,
-      contentType: file.type || 'application/octet-stream',
-      filename: fileName,
-      size: file.size,
-      slug: baseSlug,
-      role,
-    }),
+    body: formData,
   });
 
-  if (!presignResponse.ok) {
-    const message = await presignResponse.text().catch(() => '');
+  if (!uploadResponse.ok) {
+    const message = await uploadResponse.text().catch(() => '');
     throw new Error(message || 'No se pudo obtener URL de subida en R2.');
   }
 
   let presignData: UploadResponse;
   try {
-    presignData = (await presignResponse.json()) as UploadResponse;
+    presignData = (await uploadResponse.json()) as UploadResponse;
   } catch {
-    throw new Error('El Worker debe responder JSON con uploadUrl y publicUrl.');
+    throw new Error('El Worker debe responder JSON con publicUrl.');
   }
 
-  const uploadUrl = presignData.uploadUrl || presignData.uploadURL;
   const publicUrl = presignData.publicUrl ?? presignData.publicURL ?? presignData.public;
 
-  if (!uploadUrl || !publicUrl) {
-    throw new Error('Respuesta inválida del Worker: falta uploadUrl o publicUrl.');
-  }
-
-  // Step 2: Upload file to presigned URL
-  const uploadResponse = await fetch(uploadUrl, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': file.type || 'application/octet-stream',
-    },
-    body: file,
-  });
-
-  if (!uploadResponse.ok) {
-    throw new Error('La subida a R2 falló. Intenta nuevamente.');
+  if (!publicUrl) {
+    throw new Error('Respuesta inválida del Worker: falta publicUrl.');
   }
 
   return publicUrl;

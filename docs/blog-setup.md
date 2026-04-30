@@ -28,14 +28,14 @@ alter table public.blog_posts
 The blog sends multipart/form-data to the Worker with:
 
 - file
-- key (example: blog/mi-noticia/mi-noticia-gallery-1-1714390000000.jpg)
 - filename
 - contentType
 - size
 - slug
 - role
+- index
 
-The Worker stores the file in R2 and returns JSON like:
+The Worker stores the file in R2 using the `R2_BUCKET` binding and returns JSON like:
 
 {
   "publicUrl": "https://public-cdn-url",
@@ -63,3 +63,33 @@ Each post supports up to 3 media URLs. Use the uploader to select cover and OG i
 
 Ensure SPA routes (/blog, /blog/:slug, /admin) rewrite to /index.html.
 Do not expose /admin in sitemaps. Admin pages already send robots noindex.
+
+## R2 CORS configuration
+
+If you upload through the Worker, bucket CORS is not required for the browser upload itself. Keep the rule below only if you also plan to access the bucket directly from the browser:
+
+```json
+[
+  {
+    "AllowedOrigins": [
+      "https://gestussolucionesintegrales.com"
+    ],
+    "AllowedMethods": [
+      "PUT",
+      "GET",
+      "HEAD",
+      "OPTIONS"
+    ],
+    "AllowedHeaders": [
+      "Content-Type",
+      "Authorization"
+    ],
+    "ExposeHeaders": [
+      "ETag"
+    ],
+    "MaxAgeSeconds": 86400
+  }
+]
+```
+
+For quick testing you can replace the origin with `*`, but restrict it before going to production.

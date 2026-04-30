@@ -4,9 +4,9 @@ compatibility_date = "2026-04-29"
 account_id = "3c0a8e4e0971b4f688df6aa0e7ba2948"
 workers_dev = true
 
-[env.production]
 vars = { PUBLIC_BASE_URL = "https://pub-599829a93f3d41a48303d54999478441.r2.dev" }
 
-[[env.production.r2_buckets]]
+[[r2_buckets]]
 binding = "R2_BUCKET"
 bucket_name = "gestus-blog"
+
