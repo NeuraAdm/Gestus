@@ -1,5 +1,6 @@
 name = "gestus-blog"
-type = "javascript"
+main = "worker/r2-sign.js"
+compatibility_date = "2026-04-29"
 account_id = "3c0a8e4e0971b4f688df6aa0e7ba2948"
 workers_dev = true
 

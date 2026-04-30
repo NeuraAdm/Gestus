@@ -1,13 +1,10 @@
 import { slugify } from '../utils/slug';
 
-type R2PresignResponse = {
-  uploadUrl?: string;
+type UploadResponse = {
   publicUrl?: string;
-  uploadURL?: string;
   publicURL?: string;
-  url?: string;
   public?: string;
-  headers?: Record<string, string>;
+  key?: string;
 };
 
 type UploadOptions = {
@@ -21,6 +18,7 @@ const getExtension = (file: File) => {
   const fromName = nameParts.length > 1 ? nameParts[nameParts.length - 1].toLowerCase() : '';
   if (fromName) return fromName;
   if (file.type === 'image/png') return 'png';
+  if (file.type === 'image/webp') return 'webp';
   return 'jpg';
 };
 
@@ -43,57 +41,39 @@ export const uploadToR2 = async (file: File, options: UploadOptions = {}) => {
   }
 
   if (endpoint.includes('r2.cloudflarestorage.com')) {
-    throw new Error(
-      'VITE_R2_SIGN_ENDPOINT debe ser un endpoint firmado (Worker/Edge). No uses la URL del bucket.'
-    );
+    throw new Error('VITE_R2_SIGN_ENDPOINT debe ser la URL del Worker, no la del bucket.');
   }
 
   const { key, fileName, baseSlug, role } = buildObjectKey(file, options);
+  const formData = new FormData();
+  formData.append('file', file, fileName);
+  formData.append('key', key);
+  formData.append('filename', fileName);
+  formData.append('contentType', file.type || 'application/octet-stream');
+  formData.append('size', String(file.size));
+  formData.append('slug', baseSlug);
+  formData.append('role', role);
 
-  const presignResponse = await fetch(endpoint, {
+  const response = await fetch(endpoint, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      filename: fileName,
-      contentType: file.type,
-      size: file.size,
-      key,
-      slug: baseSlug,
-      role,
-    }),
+    body: formData,
   });
 
-  if (!presignResponse.ok) {
-    throw new Error('No se pudo obtener la URL de subida en R2.');
+  if (!response.ok) {
+    const message = await response.text().catch(() => '');
+    throw new Error(message || 'No se pudo subir el archivo a R2.');
   }
 
-  let data: R2PresignResponse;
+  let data: UploadResponse;
   try {
-    data = (await presignResponse.json()) as R2PresignResponse;
-  } catch (err) {
-    throw new Error('El endpoint de R2 debe responder JSON con uploadUrl y publicUrl.');
+    data = (await response.json()) as UploadResponse;
+  } catch {
+    throw new Error('El endpoint de R2 debe responder JSON con publicUrl.');
   }
 
-  const uploadUrl = data.uploadUrl ?? data.uploadURL ?? data.url;
   const publicUrl = data.publicUrl ?? data.publicURL ?? data.public;
-
-  if (!uploadUrl || !publicUrl) {
-    throw new Error('La respuesta de R2 no contiene uploadUrl/publicUrl.');
-  }
-
-  const uploadResponse = await fetch(uploadUrl, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': file.type,
-      ...(data.headers ?? {}),
-    },
-    body: file,
-  });
-
-  if (!uploadResponse.ok) {
-    throw new Error('La subida a R2 fallo. Intenta nuevamente.');
+  if (!publicUrl) {
+    throw new Error('La respuesta de R2 no contiene publicUrl.');
   }
 
   return publicUrl;

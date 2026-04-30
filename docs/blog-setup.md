@@ -23,41 +23,35 @@ alter table public.blog_posts
   add constraint blog_posts_media_max_three
   check (media_urls is null or array_length(media_urls, 1) <= 3);
 
-## R2 signed upload contract
+## R2 upload contract
 
-The blog expects the R2 endpoint to return JSON like:
+The blog sends multipart/form-data to the Worker with:
 
-{
-  "uploadUrl": "https://signed-upload-url",
-  "publicUrl": "https://public-cdn-url",
-  "headers": {
-    "x-amz-acl": "public-read"
-  }
-}
-
-The client uploads via PUT to uploadUrl. The publicUrl is stored in media_urls and cover/og.
-
-The signing endpoint must be a Worker/Edge function that returns presigned data. Do not use the raw
-bucket URL (r2.cloudflarestorage.com) as VITE_R2_SIGN_ENDPOINT.
-
-Request body sent by the client includes:
-
+- file
+- key (example: blog/mi-noticia/mi-noticia-gallery-1-1714390000000.jpg)
 - filename
 - contentType
 - size
-- key (example: blog/mi-noticia/mi-noticia-gallery-1-1714390000000.jpg)
 - slug
 - role
 
+The Worker stores the file in R2 and returns JSON like:
+
+{
+  "publicUrl": "https://public-cdn-url",
+  "key": "blog/mi-noticia/..."
+}
+
+The client stores the returned publicUrl in media_urls and uses it for cover and OG selection.
+
 ## Cloudflare Worker
 
-Create a Worker using worker/r2-sign.ts and add these secrets/vars:
+Create a Worker using worker/r2-sign.js as JavaScript and add these values:
 
-- R2_ACCESS_KEY_ID
-- R2_SECRET_ACCESS_KEY
-- R2_ACCOUNT_ID
-- R2_BUCKET
+- R2_BUCKET binding
 - PUBLIC_BASE_URL (your r2.dev URL)
+
+No R2 access keys are needed in this direct-upload flow.
 
 Example public base URL: https://gestus-blog.r2.dev
 
