@@ -1,6 +1,8 @@
 import { slugify } from '../utils/slug';
 
 type UploadResponse = {
+  uploadUrl?: string;
+  uploadURL?: string;
   publicUrl?: string;
   publicURL?: string;
   public?: string;
@@ -45,35 +47,53 @@ export const uploadToR2 = async (file: File, options: UploadOptions = {}) => {
   }
 
   const { key, fileName, baseSlug, role } = buildObjectKey(file, options);
-  const formData = new FormData();
-  formData.append('file', file, fileName);
-  formData.append('key', key);
-  formData.append('filename', fileName);
-  formData.append('contentType', file.type || 'application/octet-stream');
-  formData.append('size', String(file.size));
-  formData.append('slug', baseSlug);
-  formData.append('role', role);
 
-  const response = await fetch(endpoint, {
+  // Step 1: Request presigned URL from Worker
+  const presignResponse = await fetch(endpoint, {
     method: 'POST',
-    body: formData,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      key,
+      contentType: file.type || 'application/octet-stream',
+      filename: fileName,
+      size: file.size,
+      slug: baseSlug,
+      role,
+    }),
   });
 
-  if (!response.ok) {
-    const message = await response.text().catch(() => '');
-    throw new Error(message || 'No se pudo subir el archivo a R2.');
+  if (!presignResponse.ok) {
+    const message = await presignResponse.text().catch(() => '');
+    throw new Error(message || 'No se pudo obtener URL de subida en R2.');
   }
 
-  let data: UploadResponse;
+  let presignData: UploadResponse;
   try {
-    data = (await response.json()) as UploadResponse;
+    presignData = (await presignResponse.json()) as UploadResponse;
   } catch {
-    throw new Error('El endpoint de R2 debe responder JSON con publicUrl.');
+    throw new Error('El Worker debe responder JSON con uploadUrl y publicUrl.');
   }
 
-  const publicUrl = data.publicUrl ?? data.publicURL ?? data.public;
-  if (!publicUrl) {
-    throw new Error('La respuesta de R2 no contiene publicUrl.');
+  const uploadUrl = presignData.uploadUrl || presignData.uploadURL;
+  const publicUrl = presignData.publicUrl ?? presignData.publicURL ?? presignData.public;
+
+  if (!uploadUrl || !publicUrl) {
+    throw new Error('Respuesta inválida del Worker: falta uploadUrl o publicUrl.');
+  }
+
+  // Step 2: Upload file to presigned URL
+  const uploadResponse = await fetch(uploadUrl, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': file.type || 'application/octet-stream',
+    },
+    body: file,
+  });
+
+  if (!uploadResponse.ok) {
+    throw new Error('La subida a R2 falló. Intenta nuevamente.');
   }
 
   return publicUrl;
