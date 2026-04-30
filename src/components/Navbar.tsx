@@ -14,23 +14,26 @@ const Navbar = () => {
               <img className="h-16 w-auto" src={logoImage} alt="Logo Gestus" />
             </div>
             <div className="hidden md:ml-14 md:flex md:space-x-8">
-              <a href="#inicio" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
+              <a href="/#inicio" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
                 Inicio
               </a>
-              <a href="#about" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
+              <a href="/#about" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
                 Quienes Somos
               </a>
-              <a href="#services" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
+              <a href="/#services" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
                 Servicios
               </a>
-              <a href="#faq" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
+              <a href="/#faq" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
                 FAQ
               </a>
-              <a href="#team" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
+              <a href="/#team" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
                 Equipo
               </a>
-              <a href="#contact" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
+              <a href="/#contact" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
                 Contacto
+              </a>
+              <a href="/blog" className="inline-flex items-center text-lg font-medium text-white hover:text-indigo-200 hover:border-indigo-600">
+                Blog
               </a>
             </div>
           </div>
@@ -56,46 +59,53 @@ const Navbar = () => {
         <div className="md:hidden">
           <div className="pt-2 pb-3 space-y-1">
             <a
-              href="#inicio"
+              href="/#inicio"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Inicio
             </a>
             <a
-              href="#about"
+              href="/#about"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Acerca De
             </a>
             <a
-              href="#services"
+              href="/#services"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Servicios
             </a>
             <a
-              href="#faq"
+              href="/#faq"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Preguntas Frecuentes
             </a>
             <a
-              href="#team"
+              href="/#team"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Equipo de Trabajo
             </a>
             <a
-              href="#contact"
+              href="/#contact"
               className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300"
               onClick={() => setIsOpen(false)}
             >
               Contacto
+            </a>
+            <a
+              href="/blog"
+              className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300"
+              onClick={() => setIsOpen(false)}
+            >
+              Blog
             </a>
           </div>
         </div>

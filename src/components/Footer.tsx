@@ -85,19 +85,22 @@ const Footer = () => {
             <h3 className="text-base font-semibold text-white">Enlaces utiles</h3>
             <ul className="mt-4 space-y-2 text-sm text-slate-300">
               <li>
-                <a href="#inicio" className="hover:text-white">Inicio</a>
+                <a href="/#inicio" className="hover:text-white">Inicio</a>
               </li>
               <li>
-                <a href="#about" className="hover:text-white">Quienes somos</a>
+                <a href="/#about" className="hover:text-white">Quienes somos</a>
               </li>
               <li>
-                <a href="#services" className="hover:text-white">Servicios</a>
+                <a href="/#services" className="hover:text-white">Servicios</a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-white">Preguntas frecuentes</a>
+                <a href="/#faq" className="hover:text-white">Preguntas frecuentes</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white">Contacto</a>
+                <a href="/#contact" className="hover:text-white">Contacto</a>
+              </li>
+              <li>
+                <a href="/blog" className="hover:text-white">Blog</a>
               </li>
             </ul>
             <div className="mt-6">

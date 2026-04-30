@@ -34,3 +34,52 @@ h6 {
 section[id] {
 	scroll-margin-top: 96px;
 }
+
+.markdown {
+	color: #0f172a;
+	line-height: 1.75;
+}
+
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+	margin-top: 2.25rem;
+	margin-bottom: 1rem;
+	font-family: 'Fraunces', serif;
+	letter-spacing: -0.01em;
+}
+
+.markdown p {
+	margin: 1rem 0;
+}
+
+.markdown a {
+	color: #0f766e;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 4px;
+}
+
+.markdown ul,
+.markdown ol {
+	margin: 1.25rem 0 1.5rem 1.5rem;
+}
+
+.markdown li {
+	margin-bottom: 0.5rem;
+}
+
+.markdown blockquote {
+	border-left: 3px solid #10b981;
+	padding-left: 1rem;
+	color: #334155;
+	background: #f1f5f9;
+	border-radius: 0.75rem;
+	margin: 1.5rem 0;
+}
+
+.markdown img {
+	border-radius: 1rem;
+	box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+	margin: 1.5rem 0;
+}
