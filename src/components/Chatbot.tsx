@@ -326,7 +326,11 @@ const Chatbot: React.FC = () => {
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-      window.location.href = whatsappUrl;
+      addBotMessage(
+        'No pude abrir WhatsApp en una nueva pestaña. Si tu navegador bloquea ventanas emergentes, permite la apertura y vuelve a intentar. Tambien puedes usar este enlace directo:\n' +
+          whatsappUrl,
+        ['Abrir WhatsApp'],
+      );
     }
   };
 
@@ -346,19 +350,20 @@ const Chatbot: React.FC = () => {
 
   const handleOptionClick = (option: string) => {
     addUserMessage(option);
+    const normalizedOption = normalizeText(option);
+
+    if (normalizedOption.includes('whatsapp') || normalizedOption.includes('asesor')) {
+      handleWhatsAppRedirect('Asesoria directa');
+      return;
+    }
+
     setIsTyping(true);
 
     setTimeout(() => {
       setIsTyping(false);
-      const normalizedOption = normalizeText(option);
 
       if (option.includes('🏠') || normalizedOption.includes('volver al menu')) {
         showWelcome();
-        return;
-      }
-
-      if (normalizedOption.includes('whatsapp') || normalizedOption.includes('asesor')) {
-        handleWhatsAppRedirect('Asesoria directa');
         return;
       }
 

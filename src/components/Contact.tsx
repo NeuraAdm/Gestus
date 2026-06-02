@@ -22,7 +22,7 @@ const Contact = () => {
     e.preventDefault();
 
     // Número de WhatsApp al que se enviará el mensaje (sin '+' y sin espacios)
-    const phoneNumber = "573052237096"; // Usa el número que aparece en tu página
+    const phoneNumber = "573107186513"; // Usa el número que aparece en tu página
 
     // Crear el mensaje con toda la información del formulario
     const message = `
@@ -88,7 +88,8 @@ return(
               </div>
               <div className="ml-4">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">Celular</h3>
-                <p className="mt-2 text-base font-bold text-gray-500">+57 3052237096</p>
+                <p className="mt-2 text-base font-bold text-gray-500">+57 3107186513</p>
+                <p className="mt-2 text-base font-bold text-gray-500">+57 3147249770</p>
               </div>
             </div>
             <div className="flex items-start">
