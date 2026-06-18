@@ -9,8 +9,9 @@ type UploadResponse = {
 
 type UploadOptions = {
   slug?: string;
-  role?: 'cover' | 'og' | 'gallery';
+  role?: 'cover' | 'og' | 'gallery' | 'pdf' | 'magazine-cover';
   index?: number;
+  folder?: string;
 };
 
 const getExtension = (file: File) => {
@@ -25,11 +26,12 @@ const getExtension = (file: File) => {
 const buildObjectKey = (file: File, options: UploadOptions) => {
   const baseSlug = slugify(options.slug || 'noticia') || 'noticia';
   const role = options.role ?? 'gallery';
+  const folder = options.folder ?? 'blog';
   const indexSuffix = options.index ? `-${options.index}` : '';
   const extension = getExtension(file);
   const timestamp = Date.now();
   const fileName = `${baseSlug}-${role}${indexSuffix}-${timestamp}.${extension}`;
-  const key = `blog/${baseSlug}/${fileName}`;
+  const key = `${folder}/${baseSlug}/${fileName}`;
 
   return { key, fileName, baseSlug, role };
 };

@@ -1,0 +1,39 @@
+```gitignore
+# Dependencias
+node_modules/
+.pnpm-store/
+
+# Builds y compilados
+dist/
+build/
+*.tsbuildinfo
+*.log
+
+# Entornos y configuración local
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Documentación temporal y semillas antiguas
+primora-bd.sql
+seed_plan_trabajo_mod.md
+formulas_y_medicion_sst.md
+Primora-pg
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de sistema macOS/Linux
+.DS_Store
+Thumbs.db
+
+# Base de datos local (si existe)
+*.db
+*.sqlite
+
+# Clientes y herramientas
+skills-lock.json
