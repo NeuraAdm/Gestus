@@ -3,7 +3,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { PageFlip } from 'page-flip';
 
 // ✅ Worker desde CDN (soluciona el error de MIME type)
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.mjs`;
 
 const RENDER_SCALE = 1.5;
 const MOBILE_BREAKPOINT = 640;
