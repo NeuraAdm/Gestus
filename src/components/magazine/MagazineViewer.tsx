@@ -2,10 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PageFlip } from 'page-flip';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).href;
+// ✅ Worker desde CDN (soluciona el error de MIME type)
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 const RENDER_SCALE = 1.5;
 const MOBILE_BREAKPOINT = 640;
@@ -106,6 +104,7 @@ const MagazineViewer = ({ pdfUrl }: MagazineViewerProps) => {
 
     flip.loadFromImages(imageUrls);
 
+    // ✅ Sonido (asegúrate de que el archivo exista en public/)
     const audio = new Audio('/page-turn.mp3');
     audio.volume = 0.4;
     flip.on('flip', () => {
@@ -123,12 +122,11 @@ const MagazineViewer = ({ pdfUrl }: MagazineViewerProps) => {
 
   return (
     <div ref={wrapperRef} className="w-full bg-slate-100">
-      {/* Loading state */}
       {status === 'loading' && (
         <div className="flex min-h-[400px] flex-col items-center justify-center gap-4">
           <div className="h-1.5 w-48 overflow-hidden rounded-full bg-slate-200">
             <div
-              className="h-full bg-emerald-500 transition-all duration-300"
+              className="h-full transition-all duration-300 bg-emerald-500"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -136,18 +134,16 @@ const MagazineViewer = ({ pdfUrl }: MagazineViewerProps) => {
         </div>
       )}
 
-      {/* Error state */}
       {status === 'error' && (
         <div className="flex min-h-[400px] items-center justify-center px-4">
-          <p className="text-center text-sm text-rose-500">
-            No se pudo cargar el PDF. Verifica que el archivo sea accesible (CORS).
+          <p className="text-sm text-center text-rose-500">
+            No se pudo cargar el PDF. Verifica que el archivo sea accesible.
           </p>
         </div>
       )}
 
       {status === 'ready' && (
         <>
-          {/* Mobile: vertical scroll */}
           {isMobile && (
             <div className="divide-y divide-slate-200">
               {imageUrls.map((url, i) => (
@@ -162,13 +158,8 @@ const MagazineViewer = ({ pdfUrl }: MagazineViewerProps) => {
             </div>
           )}
 
-          {/* Desktop: PageFlip flipbook */}
           {!isMobile && (
-            <div
-              ref={flipContainerRef}
-              className="w-full"
-              style={{ minHeight: 600 }}
-            />
+            <div ref={flipContainerRef} className="w-full" style={{ minHeight: 600 }} />
           )}
         </>
       )}
