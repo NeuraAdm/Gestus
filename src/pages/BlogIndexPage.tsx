@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import Breadcrumbs from '../components/shared/Breadcrumbs';
 import { fetchPublishedPosts } from '../lib/blogApi';
 import type { BlogPost } from '../types/blog';
 import BlogCard from '../components/blog/BlogCard';
@@ -74,17 +75,20 @@ const BlogIndexPage = () => {
   return (
     <section className="relative overflow-hidden bg-slate-50">
       <Helmet>
-        <title>Blog Gestus | Noticias, guias y actualizaciones</title>
+        <title>Blog SG-SST | Guías de Seguridad y Salud en el Trabajo | Gestus</title>
         <meta
           name="description"
-          content="Noticias, analisis y guias sobre SG-SST, gestion de riesgos y cumplimiento empresarial para pymes."
+          content="Artículos y guías sobre SG-SST, prevención de riesgos laborales, COPASST, salud ocupacional y normativa SST en Colombia. Actualización Decreto 1072."
         />
-        <meta property="og:title" content="Blog Gestus" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href="https://gestussolucionesintegrales.com/blog" />
+        <meta property="og:title" content="Blog SG-SST | Guías de Seguridad y Salud en el Trabajo | Gestus" />
         <meta
           property="og:description"
-          content="Actualizaciones estrategicas para empresas que buscan cumplimiento y crecimiento sostenible."
+          content="Artículos especializados en SG-SST, prevención de riesgos laborales, COPASST y seguridad industrial para profesionales y empresas en Colombia."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gestussolucionesintegrales.com/blog" />
       </Helmet>
 
       <div className="pointer-events-none absolute inset-0">
@@ -93,17 +97,25 @@ const BlogIndexPage = () => {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 lg:px-8">
+        <Breadcrumbs crumbs={[{ label: 'Blog SG-SST' }]} className="mb-8" />
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-600">
               Gestus Newsroom
             </p>
             <h1 className="mt-4 text-4xl font-semibold text-slate-900 sm:text-5xl">
-              Noticias empresariales con foco en cumplimiento y gestion del riesgo
+              Blog SG-SST: Guías de Seguridad y Salud en el Trabajo
             </h1>
             <p className="mt-4 text-base text-slate-600">
-              Explora tendencias, novedades legales y mejores practicas para fortalecer tu operacion.
+              Artículos especializados en prevención de riesgos laborales, salud ocupacional, COPASST, normativa SST y seguridad industrial para empresas en Colombia.
             </p>
+            <div className="mt-4 flex flex-wrap gap-3 text-sm">
+              <a href="/#services" className="text-emerald-700 font-semibold hover:underline">Ver servicios SG-SST</a>
+              <span className="text-slate-400">·</span>
+              <Link to="/revistas" className="text-emerald-700 font-semibold hover:underline">Revistas SST</Link>
+              <span className="text-slate-400">·</span>
+              <a href="/#contact" className="text-emerald-700 font-semibold hover:underline">Agendar diagnóstico</a>
+            </div>
           </div>
           <div className="rounded-3xl border border-white/40 bg-white/70 p-6 shadow-[0_30px_80px_-50px_rgba(15,23,42,0.6)]">
             <p className="text-sm font-semibold text-slate-900">Resumen del blog</p>

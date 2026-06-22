@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
+import Breadcrumbs from '../components/shared/Breadcrumbs';
 import { fetchPublishedMagazines } from '../lib/magazineApi';
 import type { Magazine } from '../types/magazine';
 import MagazineCard from '../components/magazine/MagazineCard';
@@ -72,17 +73,20 @@ const MagazinesIndexPage = () => {
   return (
     <section className="relative overflow-hidden bg-slate-50">
       <Helmet>
-        <title>Revistas Digitales | Gestus Soluciones Integrales</title>
+        <title>Revistas SST | Publicaciones de Seguridad y Salud en el Trabajo | Gestus</title>
         <meta
           name="description"
-          content="Explora nuestras revistas digitales sobre SG-SST, gestion de riesgos y cumplimiento empresarial."
+          content="Revistas digitales especializadas en SG-SST, riesgos laborales, COPASST, salud ocupacional y normativa colombiana. Recursos para profesionales de seguridad industrial."
         />
-        <meta property="og:title" content="Revistas Digitales Gestus" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <link rel="canonical" href="https://gestussolucionesintegrales.com/revistas" />
+        <meta property="og:title" content="Revistas SST | Publicaciones de Seguridad y Salud en el Trabajo | Gestus" />
         <meta
           property="og:description"
-          content="Publicaciones especializadas en cumplimiento y gestion del riesgo empresarial."
+          content="Revistas interactivas sobre SG-SST, prevención de riesgos laborales, COPASST y salud ocupacional. Recursos especializados para empresas y profesionales SST."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gestussolucionesintegrales.com/revistas" />
       </Helmet>
 
       <div className="pointer-events-none absolute inset-0">
@@ -91,16 +95,17 @@ const MagazinesIndexPage = () => {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 lg:px-8">
+        <Breadcrumbs crumbs={[{ label: 'Revistas SST' }]} className="mb-8" />
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-600">
               Gestus Publicaciones
             </p>
             <h1 className="mt-4 text-4xl font-semibold text-slate-900 sm:text-5xl">
-              Revistas digitales especializadas
+              Revistas SST: Seguridad y Salud en el Trabajo
             </h1>
             <p className="mt-4 text-base text-slate-600">
-              Ediciones interactivas sobre SG-SST, riesgos laborales y cumplimiento normativo.
+              Ediciones interactivas sobre SG-SST, prevención de riesgos laborales, COPASST, salud ocupacional y normativa colombiana para profesionales y empresas.
             </p>
           </div>
           <div className="rounded-3xl border border-white/40 bg-white/70 p-6 shadow-[0_30px_80px_-50px_rgba(15,23,42,0.6)]">

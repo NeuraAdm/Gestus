@@ -14,6 +14,7 @@ const services = [
   {
     title: 'Consultoria y Asesoria',
     description: 'Prestamos servicios de asesoria y consultoria en el diagnostico, implementacion, mantenimiento, fortalecimiento y mejora de los Sistemas de Gestion.',
+    imgAlt: 'Consultoría y asesoría en sistemas de gestión SG-SST Colombia',
     img: image1,
     detailedDescription: 'Nuestro servicio de consultoría y asesoría está diseñado para acompañar a su organización en cada etapa del desarrollo e implementación de Sistemas de Gestión. Contamos con un equipo multidisciplinario de expertos que evalúan, diseñan y optimizan procesos para garantizar el cumplimiento normativo y la mejora continua de su empresa.',
     benefits: [
@@ -34,6 +35,7 @@ const services = [
   {
     title: 'Seguridad y Salud en el Trabajo (SG-SST)',
     description: 'Especialistas en diseño, implementación y auditoría del Sistema de Gestión de Seguridad y Salud en el Trabajo.',
+    imgAlt: 'Implementación SG-SST seguridad y salud en el trabajo Decreto 1072 Colombia',
     img: image2,
     detailedDescription: 'Implementamos el Sistema de Gestión de Seguridad y Salud en el Trabajo (SG-SST) cumpliendo rigurosamente con el Decreto 1072 de 2015 y la Resolución 0312 de 2019. Nuestro enfoque es práctico, preventivo y orientado a resultados.',
     benefits: [
@@ -56,6 +58,7 @@ const services = [
   {
     title: 'Analisis de Riesgos',
     description: 'Ofrecemos el servicio de diseño de procedimientos para establecer un proceso de gestion del riesgo que permita la identificacion, analisis, evaluacion, tratamiento y comunicacion de los riesgos.',
+    imgAlt: 'Análisis de riesgos laborales matriz de peligros identificación de riesgos',
     img: image3,
     detailedDescription: 'Nuestro servicio de Análisis de Riesgos utiliza metodologías reconocidas internacionalmente para identificar, evaluar y gestionar los riesgos de su organización. Proporcionamos herramientas efectivas para la toma de decisiones basadas en la gestión integral del riesgo.',
     benefits: [
@@ -76,6 +79,7 @@ const services = [
   {
     title: 'Capacitacion',
     description: 'Ofrecemos capacitaciones especializadas en Sistemas Integrados de Gestión de Calidad, Seguridad y Salud en el Trabajo, y Control de Riesgos, enfocadas en el ciclo de mejora continua (PHVA). Trabajamos junto al personal de su organización para mejorar su conocimiento y aplicación de las normas, optimizando la productividad, competitividad, seguridad y toma de decisiones.',
+    imgAlt: 'Capacitación SST seguridad y salud en el trabajo prevención de riesgos laborales',
     img: image4,
     detailedDescription: 'Nuestros programas de capacitación están diseñados por expertos con amplia experiencia práctica. Utilizamos metodologías interactivas y casos reales para garantizar la comprensión y aplicación efectiva de los conocimientos en su organización.',
     benefits: [
@@ -96,6 +100,7 @@ const services = [
   {
     title: 'Auditoria',
     description: 'El servicio de auditoria se ofrece con el fin de verificar el cumplimiento de las obligaciones de acuerdo con el cumplimiento de los requisitos exigidos por la normatividad en materia de riesgo laboral y el Decreto 1072 de 2015 y la Resolucion 0312 de 2019, verificando el cumplimiento de lso requisitos del cliente.',
+    imgAlt: 'Auditoría SG-SST Resolución 0312 estándares mínimos seguridad laboral',
     img: image5,
     detailedDescription: 'Realizamos auditorías internas y de verificación con personal certificado y altamente calificado. Nuestro enfoque es constructivo, orientado a identificar oportunidades de mejora y fortalecer su sistema de gestión.',
     benefits: [
@@ -116,6 +121,7 @@ const services = [
   {
     title: 'Investigacion de Accidentes de Trabajo',
     description: 'En la investigacion de los accidentes de trabajo graves, intervienen profesionales idoneos y con experiencia en el manejo de este tipo de eventos, dicha investigacion incluye: Visita, Registro Fotografico y Entravista con el trabajador afectado y con los testigos, si los hubiese.',
+    imgAlt: 'Investigación de accidentes de trabajo riesgos laborales FURAT Colombia',
     img: image6,
     detailedDescription: 'Contamos con profesionales especializados en investigación de accidentes e incidentes laborales. Utilizamos metodologías técnicas reconocidas para determinar causas raíz y prevenir recurrencias, cumpliendo con los requisitos legales del Ministerio del Trabajo.',
     benefits: [
@@ -136,6 +142,7 @@ const services = [
   {
     title: 'Asesoría Jurídica Laboral',
     description: 'Abogados especializados en derecho laboral empresarial, enfocados en la prevención de riesgos jurídicos y la defensa de los intereses empresariales.',
+    imgAlt: 'Asesoría jurídica laboral derecho laboral Ministerio de Trabajo Colombia',
     img: image7,
     detailedDescription: 'Nuestro equipo legal especializado en derecho laboral y de seguridad social brinda asesoría integral para garantizar el cumplimiento normativo de su organización. Brindamos respaldo legal oportuno y estratégico.',
     benefits: [
@@ -156,6 +163,7 @@ const services = [
    {
     title: 'Gestión del Talento Humano',
     description: 'Profesionales enfocados en fortalecer la estructura organizacional y el desarrollo del recurso humano.',
+    imgAlt: 'Gestión del talento humano recursos humanos salud laboral bienestar organizacional',
     img: image8,
     detailedDescription: 'Creemos que el talento humano es el motor del crecimiento empresarial. Nuestro servicio de Gestión del Talento Humano está diseñado para optimizar la estructura organizacional, mejorar el clima laboral y potenciar el desarrollo de su equipo, alineando las estrategias de recursos humanos con los objetivos de su empresa.',
     benefits: [
@@ -176,6 +184,7 @@ const services = [
    {
     title: 'Área Contable y Financiera',
     description: 'Contadores y asesores financieros que garantizan el cumplimiento tributario y la organización financiera de nuestros clientes.',
+    imgAlt: 'Asesoría contable y financiera cumplimiento fiscal nómina pymes Colombia',
     img: image9,
     detailedDescription: 'Una contabilidad clara es la base de decisiones inteligentes.',
     benefits: [
@@ -198,8 +207,18 @@ const services = [
   },
 ];
 
+interface ServiceItem {
+  title: string;
+  description: string;
+  img: string;
+  imgAlt: string;
+  detailedDescription: string;
+  benefits: string[];
+  steps: { title: string; description: string }[];
+}
+
 interface ModalProps {
-  service: typeof services[0] | null;
+  service: ServiceItem | null;
   onClose: () => void;
 }
 
@@ -213,132 +232,123 @@ const ServiceModal: React.FC<ModalProps> = ({ service, onClose }) => {
   };
 
   const modalContent = (
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 sm:p-4 md:p-6" 
+    <div
+      className="fixed inset-0 bg-black/60 flex items-center justify-center p-3 sm:p-6"
       onClick={handleBackdropClick}
-      style={{ 
-        zIndex: 9999,
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-      }}
+      style={{ zIndex: 9999 }}
     >
-      <div 
-        className="bg-white rounded-xl sm:rounded-2xl w-6/7 sm:w-6/7 lg:w-6/7 max-h-[40vh] overflow-y-auto shadow-2xl"
+      <div
+        className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
-        <button 
-          onClick={onClose}
-          className="inline top-2 right-2 sm:top-4 sm:right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
-        >
-          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-teal-600 px-2 py-2 sm:px-6 sm:py-6 lg:px-8 rounded-t-xl sm:rounded-t-2xl">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-lg flex items-center justify-center">
-              {service.img && <img src={service.img} alt={service.title} className="w-full h-full object-contain" />}
+        <div className="relative bg-gradient-to-r from-blue-600 via-blue-500 to-teal-600 px-5 py-5 sm:px-8 sm:py-6 rounded-t-2xl flex-shrink-0">
+          <div className="flex items-center gap-3 sm:gap-4 pr-10">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center flex-shrink-0">
+              {service.img && <img src={service.img} alt={service.imgAlt || service.title} className="w-full h-full object-contain" />}
             </div>
-            <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-white leading-tight pr-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">
               {service.title}
             </h2>
           </div>
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/20 hover:bg-white/40 rounded-full p-1.5 transition-colors"
+            aria-label="Cerrar"
+          >
+            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
-        {/* Content */}
-        <div className="p-6 sm:p-6 lg:p-8">
-          {/* Description */}
-          <div className="mb-2 sm:mb-8">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Descripción del Servicio
-            </h3>
-            <p className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed">
-              {service.detailedDescription}
-            </p>
-          </div>
+        {/* Scrollable content */}
+        <div className="overflow-y-auto flex-1">
+          <div className="p-5 sm:p-8 space-y-6">
+            {/* Description */}
+            <div>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Descripción del Servicio
+              </h3>
+              <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                {service.detailedDescription}
+              </p>
+            </div>
 
-          {/* Benefits */}
-          <div className="mb-2 sm:mb-8 bg-gradient-to-br from-green-50 to-teal-50 rounded-lg sm:rounded-xl p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Beneficios Clave
-            </h3>
-            <ul className="space-y-2 sm:space-y-3">
-              {service.benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start gap-2 sm:gap-3 text-gray-700">
-                  <span className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs sm:text-sm font-bold mt-0.5">
-                    ✓
-                  </span>
-                  <span className="text-sm sm:text-base">{benefit}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Benefits */}
+            <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Beneficios Clave
+              </h3>
+              <ul className="space-y-2">
+                {service.benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-2 text-gray-700">
+                    <span className="flex-shrink-0 w-5 h-5 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold mt-0.5">
+                      ✓
+                    </span>
+                    <span className="text-sm sm:text-base">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Implementation Process */}
-          <div className="mb-2 sm:mb-8">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-4">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-              Proceso de Implementación
-            </h3>
-            <div className="space-y-4 sm:space-y-6">
-              {service.steps.map((step, index) => (
-                <div key={index} className="relative pl-8 sm:pl-10 lg:pl-12">
-                  {/* Connector line */}
-                  {index < service.steps.length - 1 && (
-                    <div className="absolute left-4 sm:left-5 lg:left-6 top-8 sm:top-10 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-teal-500"></div>
-                  )}
-                  
-                  {/* Step number */}
-                  <div className="left-0 top-0 w-6 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-600 to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-lg lg:text-xl shadow-lg">
-                    {index + 1}
+            {/* Implementation Process */}
+            <div>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                Proceso de Implementación
+              </h3>
+              <div className="space-y-3">
+                {service.steps.map((step, index) => (
+                  <div key={index} className="relative flex gap-3 sm:gap-4">
+                    {/* Connector line */}
+                    {index < service.steps.length - 1 && (
+                      <div className="absolute left-4 sm:left-5 top-9 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 to-teal-400"></div>
+                    )}
+                    {/* Step number */}
+                    <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base shadow-md z-10">
+                      {index + 1}
+                    </div>
+                    {/* Step content */}
+                    <div className="flex-1 bg-white border border-gray-100 rounded-xl p-3 sm:p-4 shadow-sm mb-1">
+                      <h4 className="text-sm sm:text-base font-bold text-gray-900 mb-1">
+                        {step.title}
+                      </h4>
+                      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                  
-                  {/* Step content */}
-                  <div className="bg-white border-2 border-gray-100 rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-5 hover:shadow-lg transition-shadow">
-                    <h4 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">
-                      {step.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm sm:text-base">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-2 py-2 sm:px-6 sm:py-6 lg:px-8 rounded-b-xl sm:rounded-b-2xl border-t border-gray-200">
-          <div className="flex flex-col gap-2 sm:gap-4 items-center sm:flex-row sm:justify-between">
-            <p className="text-gray-700 font-medium text-center sm:text-left text-sm sm:text-base">
+        <div className="bg-gray-50 px-5 py-4 sm:px-8 sm:py-5 rounded-b-2xl border-t border-gray-200 flex-shrink-0">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-gray-700 font-medium text-sm sm:text-base text-center sm:text-left">
               ¿Listo para implementar este servicio en su empresa?
             </p>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               onClick={onClose}
-              className="group w-10 sm:w-auto inline-flex items-center justify-center px-8 sm:px-8 py-2.5 sm:py-3 font-bold text-white rounded-lg bg-gradient-to-r from-teal-600 to-green-500 hover:from-green-600 hover:to-teal-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-sm sm:text-base"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-2.5 font-bold text-white rounded-lg bg-gradient-to-r from-teal-600 to-green-500 hover:from-green-600 hover:to-teal-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-sm sm:text-base whitespace-nowrap"
             >
-              <span className="flex items-center gap-8">
-                Contactar Ahora
-                <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" className="w-4 h-4 sm:w-5 sm:h-5 transform transition-transform group-hover:translate-x-1">
-                  <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
-                </svg>
-              </span>
+              Contactar Ahora
+              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" className="w-4 h-4 transform transition-transform group-hover:translate-x-1 flex-shrink-0">
+                <path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"></path>
+              </svg>
             </a>
           </div>
         </div>
@@ -351,7 +361,7 @@ const ServiceModal: React.FC<ModalProps> = ({ service, onClose }) => {
 };
 
 const Services = () => {
-  const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const slugify = (value: string) =>
     value
       .toLowerCase()
@@ -366,7 +376,7 @@ const Services = () => {
     title: service.title,
   }));
 
-  const handleOpenModal = (service: typeof services[0]) => {
+  const handleOpenModal = (service: ServiceItem) => {
     setSelectedService(service);
   };
 
@@ -411,7 +421,7 @@ const Services = () => {
 
                     </div>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        {service.img && <img src={service.img} alt={service.title} className="object-contain" />}
+                        {service.img && <img src={service.img} alt={service.imgAlt || service.title} className="object-contain" loading="lazy" />}
                       </div>
                     </div>
                     <div className="p-6">

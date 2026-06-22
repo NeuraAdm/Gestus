@@ -58,10 +58,10 @@ const FAQ = () => {
         <div className="text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">FAQ</p>
           <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
-            Preguntas frecuentes en Seguridad y Salud en el Trabajo
+            Preguntas frecuentes sobre SG-SST y prevención de riesgos laborales
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            Respuestas claras para decisiones rapidas y cumplimiento normativo seguro.
+            Respuestas claras sobre seguridad industrial, salud ocupacional, COPASST y cumplimiento del Decreto 1072.
           </p>
         </div>
 

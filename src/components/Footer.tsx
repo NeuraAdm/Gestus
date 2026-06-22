@@ -101,7 +101,10 @@ const Footer = () => {
                 <a href="/#contact" className="hover:text-white">Contacto</a>
               </li>
               <li>
-                <a href="/blog" className="hover:text-white">Blog</a>
+                <a href="/blog" className="hover:text-white">Blog SG-SST</a>
+              </li>
+              <li>
+                <a href="/revistas" className="hover:text-white">Revistas SST</a>
               </li>
             </ul>
             <div className="mt-6">

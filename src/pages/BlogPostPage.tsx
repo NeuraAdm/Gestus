@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import Breadcrumbs from '../components/shared/Breadcrumbs';
 import type { BlogPost } from '../types/blog';
 import { fetchPostBySlug } from '../lib/blogApi';
 import { formatDate, getReadingTimeLabel } from '../utils/format';
@@ -113,20 +114,33 @@ const BlogPostPage = () => {
       <Helmet>
         <title>{post.seo_title || post.title}</title>
         <meta name="description" content={post.seo_description || post.excerpt || ''} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content={post.seo_title || post.title} />
         <meta property="og:description" content={post.seo_description || post.excerpt || ''} />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="Gestus Soluciones Integrales S.A.S" />
         {post.og_image_url || post.cover_url ? (
           <meta property="og:image" content={post.og_image_url || post.cover_url || ''} />
         ) : null}
         {post.published_at ? (
           <meta property="article:published_time" content={post.published_at} />
         ) : null}
+        {post.updated_at ? (
+          <meta property="article:modified_time" content={post.updated_at} />
+        ) : null}
         <script type="application/ld+json">{jsonLd}</script>
       </Helmet>
 
       <div className="mx-auto max-w-5xl px-4 pb-20 pt-12 sm:px-6 lg:px-8">
+        <Breadcrumbs
+          crumbs={[
+            { label: 'Blog SG-SST', href: '/blog' },
+            { label: post.title },
+          ]}
+          className="mb-6"
+        />
         <Link
           to="/blog"
           className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700"
@@ -188,6 +202,27 @@ const BlogPostPage = () => {
           <p className="text-sm font-semibold text-slate-800">Comparte esta noticia</p>
           <div className="mt-3">
             <ShareBar url={canonicalUrl} title={post.title} />
+          </div>
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-emerald-100 bg-emerald-50 p-6">
+          <p className="text-sm font-semibold text-emerald-800">¿Necesitas asesoría en SG-SST?</p>
+          <p className="mt-1 text-sm text-slate-600">
+            Gestus ofrece implementación, auditoría y capacitación en seguridad y salud en el trabajo para empresas en Colombia.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a
+              href="/#contact"
+              className="inline-flex items-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors"
+            >
+              Agendar diagnóstico gratuito
+            </a>
+            <Link to="/blog" className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:underline">
+              Más artículos SST →
+            </Link>
+            <Link to="/revistas" className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:underline">
+              Revistas SST →
+            </Link>
           </div>
         </div>
       </div>

@@ -1,13 +1,13 @@
 {
   "name": "Gestus Soluciones Integrales S.A.S",
-  "short_name": "Gestus",
+  "short_name": "Gestus SST",
   "lang": "es-CO",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0f766e",
-  "description": "Asesoria en SG-SST, gestion del riesgo, auditoria, asesoria juridica laboral y servicios contables en Colombia.",
+  "description": "Asesoría en SG-SST, prevención de riesgos laborales, salud ocupacional y seguridad industrial en Colombia. Pereira, Risaralda.",
   "icons": [
     {
       "src": "/favicon.jpg",

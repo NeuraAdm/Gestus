@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import Breadcrumbs from '../components/shared/Breadcrumbs';
 import type { Magazine } from '../types/magazine';
 import { fetchMagazineBySlug } from '../lib/magazineApi';
 import { formatDate } from '../utils/format';
@@ -96,6 +97,7 @@ const MagazineDetailPage = () => {
       <Helmet>
         <title>{magazine.seo_title || magazine.title}</title>
         <meta name="description" content={magazine.seo_description || magazine.description || ''} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content={magazine.seo_title || magazine.title} />
         <meta
@@ -103,6 +105,8 @@ const MagazineDetailPage = () => {
           content={magazine.seo_description || magazine.description || ''}
         />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="Gestus Soluciones Integrales S.A.S" />
         {(magazine.og_image_url || magazine.cover_url) && (
           <meta property="og:image" content={magazine.og_image_url || magazine.cover_url || ''} />
         )}
@@ -113,6 +117,13 @@ const MagazineDetailPage = () => {
       </Helmet>
 
       <div className="mx-auto max-w-6xl px-4 pb-20 pt-12 sm:px-6 lg:px-8">
+        <Breadcrumbs
+          crumbs={[
+            { label: 'Revistas SST', href: '/revistas' },
+            { label: magazine.title },
+          ]}
+          className="mb-6"
+        />
         <Link
           to="/revistas"
           className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700"
@@ -147,6 +158,21 @@ const MagazineDetailPage = () => {
           <p className="text-sm font-semibold text-slate-800">Comparte esta revista</p>
           <div className="mt-3">
             <ShareBar url={canonicalUrl} title={magazine.title} />
+          </div>
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-emerald-100 bg-emerald-50 p-6">
+          <p className="text-sm font-semibold text-emerald-800">Más recursos sobre SG-SST</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link to="/revistas" className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:underline">
+              Todas las revistas SST →
+            </Link>
+            <Link to="/blog" className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:underline">
+              Blog de seguridad laboral →
+            </Link>
+            <a href="/#contact" className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:underline">
+              Agendar asesoría →
+            </a>
           </div>
         </div>
       </div>
