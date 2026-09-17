@@ -4,6 +4,13 @@ import PublicLayout from './components/layout/PublicLayout';
 import AdminLayout from './components/layout/AdminLayout';
 import RequireAuth from './components/admin/RequireAuth';
 import HomePage from './pages/HomePage';
+import NosotrosPage from './pages/NosotrosPage';
+import HistoriaPage from './pages/HistoriaPage';
+import EquipoPage from './pages/EquipoPage';
+import ServiciosPage from './pages/ServiciosPage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
+import ContactoPage from './pages/ContactoPage';
+import PrivacidadPage from './pages/PrivacidadPage';
 import BlogIndexPage from './pages/BlogIndexPage';
 import BlogPostPage from './pages/BlogPostPage';
 import MagazinesIndexPage from './pages/MagazinesIndexPage';
@@ -20,6 +27,15 @@ function App() {
     <Routes>
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/nosotros" element={<NosotrosPage />} />
+        <Route path="/historia" element={<HistoriaPage />} />
+        <Route path="/equipo" element={<EquipoPage />} />
+        <Route path="/servicios" element={<ServiciosPage />} />
+        <Route path="/servicios/:slug" element={<ServiceDetailPage />} />
+        <Route path="/contacto" element={<ContactoPage />} />
+        <Route path="/privacidad" element={<PrivacidadPage />} />
+        <Route path="/cookies" element={<PrivacidadPage />} />
+        <Route path="/sagrilaft" element={<PrivacidadPage />} />
         <Route path="/blog" element={<BlogIndexPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/revistas" element={<MagazinesIndexPage />} />

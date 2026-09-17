@@ -73,7 +73,7 @@ const BlogIndexPage = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-slate-50">
+    <section className="relative overflow-hidden bg-brand-bg-alt">
       <Helmet>
         <title>Blog SG-SST | Guías de Seguridad y Salud en el Trabajo | Gestus</title>
         <meta
@@ -92,29 +92,29 @@ const BlogIndexPage = () => {
       </Helmet>
 
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 right-0 h-80 w-80 rounded-full bg-emerald-200/50 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-sky-200/50 blur-[130px]" />
+        <div className="absolute -top-32 right-0 h-80 w-80 rounded-full bg-brand-secondary/20 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-brand-accent/15 blur-[130px]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 lg:px-8">
         <Breadcrumbs crumbs={[{ label: 'Blog SG-SST' }]} className="mb-8" />
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-emerald-600">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-brand-accent">
               Gestus Newsroom
             </p>
-            <h1 className="mt-4 text-4xl font-semibold text-slate-900 sm:text-5xl">
+            <h1 className="mt-4 text-4xl font-semibold text-brand-text sm:text-5xl">
               Blog SG-SST: Guías de Seguridad y Salud en el Trabajo
             </h1>
             <p className="mt-4 text-base text-slate-600">
               Artículos especializados en prevención de riesgos laborales, salud ocupacional, COPASST, normativa SST y seguridad industrial para empresas en Colombia.
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm">
-              <a href="/#services" className="text-emerald-700 font-semibold hover:underline">Ver servicios SG-SST</a>
+              <a href="/#services" className="text-brand-secondary font-semibold hover:underline">Ver servicios SG-SST</a>
               <span className="text-slate-400">·</span>
-              <Link to="/revistas" className="text-emerald-700 font-semibold hover:underline">Revistas SST</Link>
+              <Link to="/revistas" className="text-brand-secondary font-semibold hover:underline">Revistas SST</Link>
               <span className="text-slate-400">·</span>
-              <a href="/#contact" className="text-emerald-700 font-semibold hover:underline">Agendar diagnóstico</a>
+              <a href="/#contact" className="text-brand-secondary font-semibold hover:underline">Agendar diagnóstico</a>
             </div>
           </div>
           <div className="rounded-3xl border border-white/40 bg-white/70 p-6 shadow-[0_30px_80px_-50px_rgba(15,23,42,0.6)]">

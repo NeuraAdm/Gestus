@@ -23,7 +23,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
             loading="lazy"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-emerald-100 via-white to-sky-100 text-sm font-semibold text-slate-500">
+          <div className="flex h-full items-center justify-center bg-gradient-to-br from-brand-primary-soft via-white to-brand-bg-alt text-sm font-semibold text-brand-text-sec">
             Sin imagen destacada
           </div>
         )}
@@ -37,8 +37,8 @@ const BlogCard = ({ post }: BlogCardProps) => {
           )}
         </div>
         <div className="space-y-2">
-          <h3 className="text-xl font-semibold text-slate-900">
-            <Link to={`/blog/${post.slug}`} className="transition hover:text-emerald-700">
+          <h3 className="text-xl font-semibold text-brand-text">
+            <Link to={`/blog/${post.slug}`} className="transition hover:text-brand-secondary">
               {post.title}
             </Link>
           </h3>
