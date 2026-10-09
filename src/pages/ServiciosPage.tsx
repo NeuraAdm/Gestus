@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
+import SectionDivider from '../components/shared/SectionDivider';
 import servicesData from '../data/services';
 import heroImg from '../../images/gestus1.jpg';
 
@@ -15,6 +16,7 @@ const ServiciosPage = () => {
         imageSrc={heroImg}
         imageAlt="Servicios de SST, asesoría jurídica y contable en Pereira, Risaralda"
         heightClass="min-h-[60vh]"
+        bottomGradientTo="#F2F7FA"
       />
 
       <section className="py-20 bg-brand-bg-alt">
@@ -38,11 +40,11 @@ const ServiciosPage = () => {
                 to={`/servicios/${service.slug}`}
                 className="group block bg-white rounded-2xl border border-brand-border/40 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 overflow-hidden card-hover"
               >
-                <div className="bg-brand-primary h-40 flex items-center justify-center relative overflow-hidden">
+                <div className="h-40 relative overflow-hidden bg-brand-primary/10">
                   <img
                     src={service.img}
                     alt={service.imgAlt}
-                    className="h-24 w-24 object-contain opacity-90"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-brand-primary-hover/0 group-hover:bg-brand-primary-hover/20 transition-colors duration-200" />
                 </div>

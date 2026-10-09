@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import image1 from '../../images/CYA.png';
-import image2 from '../../images/DEI.png';
-import image3 from '../../images/ADR.png';
-import image4 from '../../images/CSG.png';
-import image5 from '../../images/ASG.png';
-import image6 from '../../images/IDA.png';
-import image7 from '../../images/ALS.png';
-import image8 from '../../images/GTH.png';
-import image9 from '../../images/ACF.png';
+import image1 from '../../images/gestus1.jpg';
+import image2 from '../../images/gestus2.jpg';
+import image3 from '../../images/gestus3.jpg';
+import image4 from '../../images/gestus6.jpg';
+import image5 from '../../images/gestus7.jpg';
+import image6 from '../../images/gestus4.jpg';
+import image7 from '../../images/9719949.jpg';
+import image8 from '../../images/10497772.jpg';
+import image9 from '../../images/10164456.jpg';
 
 interface ServiceItem {
   slug: string;
@@ -111,20 +111,18 @@ const Services = () => {
             {services.map((service) => (
               <div
                 key={service.slug}
-                className="relative flex w-80 flex-col rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-brand-border/40"
+                className="group relative flex w-80 flex-col rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-brand-border/40"
               >
-                <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl shadow-md">
-                  <div className="absolute inset-0 bg-brand-primary opacity-90" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {service.img && (
-                      <img
-                        src={service.img}
-                        alt={service.imgAlt || service.title}
-                        className="object-contain"
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
+                <div className="relative mx-4 -mt-6 h-48 overflow-hidden rounded-xl shadow-md bg-brand-primary">
+                  {service.img && (
+                    <img
+                      src={service.img}
+                      alt={service.imgAlt || service.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/40 to-transparent pointer-events-none" />
                 </div>
                 <div className="p-6">
                   <h3 className="mb-2 text-xl font-semibold text-brand-text text-center">

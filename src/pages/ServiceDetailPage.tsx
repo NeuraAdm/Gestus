@@ -29,9 +29,9 @@ import {
 } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
+import SectionDivider from '../components/shared/SectionDivider';
 import { useReveal } from '../hooks/useReveal';
 import servicesData from '../data/services';
-import heroImg from '../../images/gestus1.jpg';
 
 type LucideIconName =
   | 'Search' | 'ClipboardList' | 'Settings' | 'BarChart2' | 'TrendingUp'
@@ -92,9 +92,10 @@ const ServiceDetailPage: React.FC = () => {
       <HeroSection
         title={service.title}
         subtitle={service.heroSubtitle}
-        imageSrc={heroImg}
+        imageSrc={service.img}
         imageAlt={service.imgAlt}
         heightClass="min-h-[55vh]"
+        bottomGradientTo="#ffffff"
       />
 
       {/* 2. Intro */}
@@ -113,6 +114,8 @@ const ServiceDetailPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" flipX />
 
       {/* 3. Benefits */}
       <section className="py-20 bg-brand-bg-alt">
@@ -134,6 +137,8 @@ const ServiceDetailPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider prevColor="#F2F7FA" nextColor="#ffffff" variant="wave" flipX />
 
       {/* 4. Phases */}
       <section className="py-20 bg-white">
@@ -164,6 +169,8 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider prevColor="#ffffff" nextColor="#1B6688" variant="wave-alt" />
+
       {/* 5. Deliverables */}
       <section className="py-16 bg-brand-primary text-white">
         <div className="max-w-container mx-auto px-6">
@@ -184,6 +191,8 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider prevColor="#1B6688" nextColor="#F2F7FA" variant="wave" />
+
       {/* 6. Sectors */}
       <section className="py-16 bg-brand-bg-alt">
         <div className="max-w-container mx-auto px-6">
@@ -200,6 +209,8 @@ const ServiceDetailPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider prevColor="#F2F7FA" nextColor="#ffffff" variant="wave" flipX />
 
       {/* 7. FAQ */}
       <section className="py-20 bg-white">
@@ -238,6 +249,8 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
+      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
+
       {/* 8. Related services */}
       {relatedServices.length > 0 && (
         <section className="py-16 bg-brand-bg-alt">
@@ -250,11 +263,11 @@ const ServiceDetailPage: React.FC = () => {
                   to={`/servicios/${rel.slug}`}
                   className="group block bg-white rounded-2xl border border-brand-border/40 shadow-sm card-hover overflow-hidden"
                 >
-                  <div className="bg-brand-primary h-28 flex items-center justify-center">
+                  <div className="relative h-40 overflow-hidden bg-brand-primary/10">
                     <img
                       src={rel.img}
                       alt={rel.imgAlt}
-                      className="h-16 w-16 object-contain opacity-90"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-5">

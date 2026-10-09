@@ -24,6 +24,7 @@ interface HeroSectionProps {
   ctaPrimary?: CtaLink;
   ctaSecondary?: CtaLink;
   stats?: StatItem[];
+  bottomGradientTo?: string;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
@@ -38,39 +39,57 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   ctaPrimary,
   ctaSecondary,
   stats,
+  bottomGradientTo,
 }) => {
   if (variant === 'home') {
     return (
       <section
-        className={`relative w-full ${heightClass} flex flex-col lg:flex-row overflow-hidden`}
+        className={`relative w-full ${heightClass} flex overflow-hidden`}
       >
-        {/* Mobile / tablet: image as subtle background */}
-        <div
-          className="lg:hidden absolute inset-0"
-          aria-hidden="true"
-        >
+        {/* Full-background image */}
+        <div className="absolute inset-0" aria-hidden="true">
           <img
             src={imageSrc}
             alt=""
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover object-center"
             loading="eager"
           />
         </div>
 
-        {/* Left panel */}
-        <div className="relative z-10 flex flex-col justify-center px-8 md:px-14 lg:px-16 xl:px-20 py-20 w-full lg:w-[48%] bg-brand-primary">
+        {/* Mobile gradient: vertical, heavy top → transparent bottom */}
+        <div
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background:
+              'linear-gradient(180deg, rgb(27,102,136) 0%, rgba(27,102,136,0.94) 50%, rgba(27,102,136,0.6) 78%, rgba(27,102,136,0.18) 100%)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Desktop gradient: horizontal — solid left → transparent right */}
+        <div
+          className="absolute inset-0 hidden lg:block"
+          style={{
+            background:
+              'linear-gradient(90deg, rgb(27,102,136) 0%, rgb(27,102,136) 40%, rgba(27,102,136,0.82) 56%, rgba(27,102,136,0.35) 72%, rgba(27,102,136,0.06) 87%, transparent 100%)',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Left content */}
+        <div className="relative z-10 flex flex-col justify-center px-8 md:px-14 lg:px-16 xl:px-20 py-20 w-full lg:w-[55%]">
           {/* Blob decoratives */}
           <div
             className="absolute top-10 right-10 w-40 h-40 rounded-full pointer-events-none"
             style={{
-              background: 'radial-gradient(circle, rgba(55,133,72,0.2) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(55,133,72,0.18) 0%, transparent 70%)',
             }}
             aria-hidden="true"
           />
           <div
             className="absolute bottom-20 left-6 w-28 h-28 rounded-full pointer-events-none"
             style={{
-              background: 'radial-gradient(circle, rgba(44,141,186,0.25) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(44,141,186,0.22) 0%, transparent 70%)',
             }}
             aria-hidden="true"
           />
@@ -133,36 +152,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
           )}
 
-          {/* Scroll arrow (desktop) */}
+          {/* Scroll arrow */}
           {showScrollArrow && (
             <div
-              className="absolute bottom-7 left-1/2 bounce-arrow hidden lg:block text-white/50"
+              className="absolute bottom-7 left-1/2 bounce-arrow text-white/50"
               aria-hidden="true"
             >
               <ChevronDown className="w-7 h-7" />
             </div>
           )}
         </div>
-
-        {/* Right: image (desktop only) */}
-        <div className="hidden lg:block lg:w-[52%] relative">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
-          />
-        </div>
-
-        {/* Mobile scroll arrow */}
-        {showScrollArrow && (
-          <div
-            className="absolute bottom-5 left-1/2 bounce-arrow lg:hidden text-white/50"
-            aria-hidden="true"
-          >
-            <ChevronDown className="w-7 h-7" />
-          </div>
-        )}
       </section>
     );
   }
@@ -201,6 +200,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </p>
         )}
       </div>
+
+      {/* Bottom gradient transition */}
+      {bottomGradientTo && (
+        <div
+          className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+          style={{ background: `linear-gradient(to bottom, transparent 0%, ${bottomGradientTo} 100%)` }}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Scroll arrow */}
       {showScrollArrow && (

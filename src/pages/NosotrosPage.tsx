@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
+import SectionDivider from '../components/shared/SectionDivider';
 import heroImg from '../../images/gestus2.jpg';
 
 const keyServices = [
@@ -88,6 +89,7 @@ const NosotrosPage = () => {
         imageSrc={heroImg}
         imageAlt="Equipo Gestus Soluciones Integrales en Pereira"
         heightClass="min-h-[60vh]"
+        bottomGradientTo="#ffffff"
       />
 
       {/* Intro */}
@@ -121,6 +123,8 @@ const NosotrosPage = () => {
         </div>
       </section>
 
+      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" flipX />
+
       {/* Key services */}
       <section className="py-16 bg-brand-bg-alt">
         <div className="max-w-container mx-auto px-6">
@@ -146,6 +150,8 @@ const NosotrosPage = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider prevColor="#F2F7FA" nextColor="#ffffff" variant="wave" flipX />
 
       {/* Timeline */}
       <section className="py-20 bg-white">
@@ -266,6 +272,8 @@ const NosotrosPage = () => {
           </div>
         </div>
       </section>
+
+      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
 
       <CTASection />
     </>

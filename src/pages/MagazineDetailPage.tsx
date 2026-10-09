@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import SectionDivider from '../components/shared/SectionDivider';
 import Breadcrumbs from '../components/shared/Breadcrumbs';
 import type { Magazine } from '../types/magazine';
 import { fetchMagazineBySlug } from '../lib/magazineApi';
@@ -93,6 +94,7 @@ const MagazineDetailPage = () => {
   }
 
   return (
+    <>
     <section className="bg-white">
       <Helmet>
         <title>{magazine.seo_title || magazine.title}</title>
@@ -177,6 +179,8 @@ const MagazineDetailPage = () => {
         </div>
       </div>
     </section>
+    <SectionDivider prevColor="#ffffff" nextColor="#1B6688" variant="wave" />
+    </>
   );
 };
 

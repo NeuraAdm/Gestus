@@ -96,6 +96,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['sg-sst', 'auditoria'],
+    img: imgCYA,
+    imgAlt: 'Consultoría y asesoría en sistemas de gestión SG-SST Colombia',
   },
   {
     slug: 'sg-sst',
@@ -168,6 +170,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['auditoria', 'analisis-riesgos'],
+    img: imgDEI,
+    imgAlt: 'Implementación SG-SST seguridad y salud en el trabajo Decreto 1072 Colombia',
   },
   {
     slug: 'analisis-riesgos',
@@ -234,6 +238,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['sg-sst', 'investigacion-accidentes'],
+    img: imgADR,
+    imgAlt: 'Análisis de riesgos laborales matriz de peligros identificación GTC 45',
   },
   {
     slug: 'capacitacion',
@@ -300,6 +306,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['sg-sst', 'consultoria'],
+    img: imgCSG,
+    imgAlt: 'Capacitación SST seguridad y salud en el trabajo prevención de riesgos laborales',
   },
   {
     slug: 'auditoria',
@@ -366,6 +374,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['sg-sst', 'consultoria'],
+    img: imgASG,
+    imgAlt: 'Auditoría SG-SST Resolución 0312 estándares mínimos seguridad laboral',
   },
   {
     slug: 'investigacion-accidentes',
@@ -432,6 +442,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['analisis-riesgos', 'sg-sst'],
+    img: imgIDA,
+    imgAlt: 'Investigación de accidentes de trabajo riesgos laborales FURAT Colombia',
   },
   {
     slug: 'asesoria-juridica',
@@ -498,6 +510,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['sg-sst', 'gestion-talento'],
+    img: imgALS,
+    imgAlt: 'Asesoría jurídica laboral derecho laboral Ministerio de Trabajo Colombia',
   },
   {
     slug: 'gestion-talento',
@@ -564,6 +578,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['asesoria-juridica', 'capacitacion'],
+    img: imgGTH,
+    imgAlt: 'Gestión del talento humano recursos humanos salud laboral bienestar organizacional',
   },
   {
     slug: 'area-contable',
@@ -630,6 +646,8 @@ const servicesData: ServiceData[] = [
       },
     ],
     relatedSlugs: ['consultoria', 'gestion-talento'],
+    img: imgACF,
+    imgAlt: 'Asesoría contable y financiera cumplimiento fiscal nómina pymes Colombia',
   },
 ];
 

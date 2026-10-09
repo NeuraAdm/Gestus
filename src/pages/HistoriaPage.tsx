@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
+import SectionDivider from '../components/shared/SectionDivider';
 import heroImg from '../../images/gestus3.jpg';
 
 const milestones = [
@@ -57,6 +58,7 @@ const HistoriaPage = () => {
         imageSrc={heroImg}
         imageAlt="Historia Gestus Soluciones Integrales"
         heightClass="min-h-[60vh]"
+        bottomGradientTo="#ffffff"
       />
 
       {/* Intro */}
@@ -76,6 +78,8 @@ const HistoriaPage = () => {
           </p>
         </div>
       </section>
+
+      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
 
       {/* Timeline */}
       <section className="py-10 pb-20 bg-brand-bg-alt">
@@ -117,6 +121,8 @@ const HistoriaPage = () => {
         </div>
       </section>
 
+      <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
+
       {/* Closing statement */}
       <section className="py-16 bg-brand-primary text-white text-center">
         <div className="max-w-container mx-auto px-6">
@@ -127,6 +133,8 @@ const HistoriaPage = () => {
           <p className="mt-4 text-white/60">— Gestus Soluciones Integrales S.A.S —</p>
         </div>
       </section>
+
+      <SectionDivider prevColor="#1B6688" nextColor="#F2F7FA" variant="wave" />
 
       <CTASection />
     </>

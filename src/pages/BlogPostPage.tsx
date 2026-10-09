@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import SectionDivider from '../components/shared/SectionDivider';
 import Breadcrumbs from '../components/shared/Breadcrumbs';
 import type { BlogPost } from '../types/blog';
 import { fetchPostBySlug } from '../lib/blogApi';
@@ -110,6 +111,7 @@ const BlogPostPage = () => {
   }
 
   return (
+    <>
     <section className="bg-white">
       <Helmet>
         <title>{post.seo_title || post.title}</title>
@@ -227,6 +229,8 @@ const BlogPostPage = () => {
         </div>
       </div>
     </section>
+    <SectionDivider prevColor="#ffffff" nextColor="#1B6688" variant="wave" />
+    </>
   );
 };
 

@@ -3,10 +3,18 @@ import { Link } from 'react-router-dom';
 import { Shield, Users, Award, Clock, ArrowRight, BadgeCheck } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
+import SectionDivider from '../components/shared/SectionDivider';
 import BlogCard from '../components/blog/BlogCard';
+import MagazineCard from '../components/magazine/MagazineCard';
 import { fetchPublishedPosts } from '../lib/blogApi';
+import { fetchPublishedMagazines } from '../lib/magazineApi';
 import type { BlogPost } from '../types/blog';
+import type { Magazine } from '../types/magazine';
 import { useReveal } from '../hooks/useReveal';
+
+type FeedItem =
+  | { kind: 'post'; data: BlogPost }
+  | { kind: 'magazine'; data: Magazine };
 
 import heroImg from '../../images/gestus5.jpg';
 import service1Img from '../../images/CYA.png';
@@ -82,22 +90,29 @@ const reasons = [
 ];
 
 const HomePage = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [postsLoading, setPostsLoading] = useState(true);
+  const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
+  const [feedLoading, setFeedLoading] = useState(true);
   const valueSectionRef = useReveal<HTMLDivElement>();
 
   useEffect(() => {
     let mounted = true;
-    fetchPublishedPosts(1, 3)
-      .then(({ data }) => {
-        if (mounted) setPosts(data);
-      })
-      .catch(() => {
-        // Silently fail — blog section will not render
-      })
-      .finally(() => {
-        if (mounted) setPostsLoading(false);
-      });
+    Promise.all([
+      fetchPublishedPosts(1, 6).catch(() => ({ data: [] as BlogPost[] })),
+      fetchPublishedMagazines(1, 6).catch(() => ({ data: [] as Magazine[] })),
+    ]).then(([postsRes, magsRes]) => {
+      if (!mounted) return;
+      const postItems: FeedItem[] = postsRes.data.map((d) => ({ kind: 'post' as const, data: d }));
+      const magItems: FeedItem[] = magsRes.data.map((d) => ({ kind: 'magazine' as const, data: d }));
+      const merged = [...postItems, ...magItems]
+        .sort((a, b) => {
+          const da = new Date(a.data.published_at ?? a.data.created_at).getTime();
+          const db = new Date(b.data.published_at ?? b.data.created_at).getTime();
+          return db - da;
+        })
+        .slice(0, 3);
+      setFeedItems(merged);
+      setFeedLoading(false);
+    });
     return () => {
       mounted = false;
     };
@@ -123,6 +138,9 @@ const HomePage = () => {
         showScrollArrow
         heightClass="min-h-screen"
       />
+
+      {/* hero(#1B6688) → value props(white) */}
+      <SectionDivider prevColor="#1B6688" nextColor="#ffffff" variant="wave" />
 
       {/* 2. Propuesta de valor */}
       <section className="py-20 bg-white">
@@ -156,6 +174,9 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* white(#fff) → servicios(#F2F7FA) */}
+      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" flipX />
+
       {/* 3. Servicios destacados */}
       <section className="py-20 bg-brand-bg-alt">
         <div className="max-w-container mx-auto px-6">
@@ -177,11 +198,11 @@ const HomePage = () => {
                 key={service.title}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col"
               >
-                <div className="h-44 bg-brand-primary/10 flex items-center justify-center p-6">
+                <div className="h-44 relative overflow-hidden bg-brand-primary/10">
                   <img
                     src={service.img}
                     alt={service.title}
-                    className="h-32 w-32 object-contain"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     loading="lazy"
                   />
                 </div>
@@ -210,6 +231,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* servicios(#F2F7FA) → por qué(#1B6688) */}
+      <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
 
       {/* 4. Por qué elegirnos */}
       <section className="relative py-20 bg-brand-primary text-white overflow-hidden">
@@ -246,36 +270,55 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* 5. Blog destacado */}
-      {!postsLoading && posts.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-container mx-auto px-6">
-            <div className="text-center mb-14">
-              <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
-                Conocimiento SST
-              </span>
-              <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
-                Últimas publicaciones
-              </h2>
-              <p className="mt-4 text-brand-text-sec max-w-2xl mx-auto text-lg">
-                Artículos, noticias y recursos sobre seguridad y salud en el trabajo.
-              </p>
+      {/* 5. Últimas publicaciones (blog + revistas mezclados) */}
+      {!feedLoading && feedItems.length > 0 ? (
+        <>
+          {/* por qué(#1B6688) → publicaciones(white) */}
+          <SectionDivider prevColor="#1B6688" nextColor="#ffffff" variant="wave" flipX />
+          <section className="py-20 bg-white">
+            <div className="max-w-container mx-auto px-6">
+              <div className="text-center mb-14">
+                <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+                  Conocimiento SST
+                </span>
+                <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+                  Últimas publicaciones
+                </h2>
+                <p className="mt-4 text-brand-text-sec max-w-2xl mx-auto text-lg">
+                  Artículos, noticias y revistas sobre seguridad y salud en el trabajo.
+                </p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8 items-start">
+                {feedItems.map((item) =>
+                  item.kind === 'post' ? (
+                    <BlogCard key={item.data.id} post={item.data} />
+                  ) : (
+                    <MagazineCard key={item.data.id} magazine={item.data} />
+                  )
+                )}
+              </div>
+              <div className="mt-10 flex flex-wrap justify-center gap-4">
+                <Link
+                  to="/blog"
+                  className="inline-flex items-center gap-2 border-2 border-brand-primary text-brand-primary px-7 py-3 rounded-full font-semibold hover:bg-brand-primary hover:text-white transition-all duration-200"
+                >
+                  Ver blog <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/revistas"
+                  className="inline-flex items-center gap-2 border-2 border-brand-accent text-brand-accent px-7 py-3 rounded-full font-semibold hover:bg-brand-accent hover:text-white transition-all duration-200"
+                >
+                  Ver revistas <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {posts.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </div>
-            <div className="text-center mt-10">
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-2 border-2 border-brand-primary text-brand-primary px-8 py-3 rounded-full font-semibold hover:bg-brand-primary hover:text-white transition-all duration-200"
-              >
-                Ver todas las publicaciones <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
+          </section>
+          {/* publicaciones(white) → CTA(#F2F7FA) */}
+          <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
+        </>
+      ) : (
+        /* por qué(#1B6688) → CTA(#F2F7FA) direct */
+        <SectionDivider prevColor="#1B6688" nextColor="#F2F7FA" variant="wave" />
       )}
 
       {/* 6. CTA */}

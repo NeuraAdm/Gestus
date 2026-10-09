@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useSearchParams } from 'react-router-dom';
 import Breadcrumbs from '../components/shared/Breadcrumbs';
+import SectionDivider from '../components/shared/SectionDivider';
 import { fetchPublishedPosts } from '../lib/blogApi';
 import type { BlogPost } from '../types/blog';
 import BlogCard from '../components/blog/BlogCard';
@@ -73,6 +74,7 @@ const BlogIndexPage = () => {
   };
 
   return (
+    <>
     <section className="relative overflow-hidden bg-brand-bg-alt">
       <Helmet>
         <title>Blog SG-SST | Guías de Seguridad y Salud en el Trabajo | Gestus</title>
@@ -168,6 +170,8 @@ const BlogIndexPage = () => {
         </div>
       </div>
     </section>
+    <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
+    </>
   );
 };
 

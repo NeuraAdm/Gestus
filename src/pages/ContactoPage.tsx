@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
+import SectionDivider from '../components/shared/SectionDivider';
 import heroImg from '../../images/gestus6.jpg';
 
 const serviceOptions = [
@@ -92,6 +93,7 @@ const ContactoPage = () => {
         imageSrc={heroImg}
         imageAlt="Contáctenos Gestus Soluciones Integrales Pereira"
         heightClass="min-h-[50vh]"
+        bottomGradientTo="#ffffff"
       />
 
       {/* Contact section */}
@@ -369,6 +371,8 @@ const ContactoPage = () => {
           title="Ubicación Gestus Soluciones Integrales"
         />
       </section>
+
+      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
 
       <CTASection />
     </>

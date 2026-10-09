@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import Breadcrumbs from '../components/shared/Breadcrumbs';
+import SectionDivider from '../components/shared/SectionDivider';
 import { fetchPublishedMagazines } from '../lib/magazineApi';
 import type { Magazine } from '../types/magazine';
 import MagazineCard from '../components/magazine/MagazineCard';
@@ -71,6 +72,7 @@ const MagazinesIndexPage = () => {
   };
 
   return (
+    <>
     <section className="relative overflow-hidden bg-slate-50">
       <Helmet>
         <title>Revistas SST | Publicaciones de Seguridad y Salud en el Trabajo | Gestus</title>
@@ -159,6 +161,8 @@ const MagazinesIndexPage = () => {
         </div>
       </div>
     </section>
+    <SectionDivider prevColor="#F8FAFC" nextColor="#1B6688" variant="wave-alt" />
+    </>
   );
 };
 
