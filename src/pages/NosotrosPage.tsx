@@ -3,7 +3,7 @@ import { CheckCircle } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
-import heroImg from '../../images/gestus2.jpg';
+import heroImg from '../../images/H-QS.jpeg';
 
 const keyServices = [
   'Seguridad y Salud en el Trabajo (SG-SST)',
@@ -94,28 +94,28 @@ const NosotrosPage = () => {
 
       {/* Intro */}
       <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
+        <div className="px-6 mx-auto max-w-container">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+            <span className="text-sm font-semibold tracking-widest uppercase text-brand-secondary">
               Quiénes somos
             </span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+            <h2 className="mt-2 text-3xl font-bold md:text-4xl text-brand-primary">
               Empresa altamente especializada en asesoría integral
             </h2>
-            <p className="mt-6 text-lg text-brand-text-sec leading-relaxed">
+            <p className="mt-6 text-lg leading-relaxed text-brand-text-sec">
               Gestus Soluciones Integrales S.A.S es una firma colombiana con sede en Pereira,
               Risaralda, especializada en la prestación de servicios de asesoría en Sistemas de
               Gestión Integral. Cumplimos con las normativas ISO y lideramos la implementación de
               Sistemas de Gestión de la Seguridad y la Salud en el Trabajo (SG-SST).
             </p>
-            <p className="mt-4 text-lg text-brand-text-sec leading-relaxed">
+            <p className="mt-4 text-lg leading-relaxed text-brand-text-sec">
               Contamos con un equipo interdisciplinario de profesionales comprometidos con el
               crecimiento, la protección legal y el fortalecimiento organizacional de las pequeñas
               y medianas empresas. Combinamos experiencia técnica, jurídica y contable para ofrecer
               soluciones integrales con un enfoque preventivo, estratégico y ajustado a la realidad
               empresarial.
             </p>
-            <blockquote className="mt-8 italic text-xl text-brand-primary font-medium">
+            <blockquote className="mt-8 text-xl italic font-medium text-brand-primary">
               "Más que asesores, somos aliados estratégicos para el crecimiento responsable de su empresa."
             </blockquote>
             <p className="mt-2 text-sm text-brand-text-sec">— Gestus Soluciones Integrales —</p>
@@ -127,24 +127,24 @@ const NosotrosPage = () => {
 
       {/* Key services */}
       <section className="py-16 bg-brand-bg-alt">
-        <div className="max-w-container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-primary">
+        <div className="px-6 mx-auto max-w-container">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold md:text-4xl text-brand-primary">
               Nuestras áreas de servicio
             </h2>
-            <p className="mt-4 text-brand-text-sec max-w-xl mx-auto">
+            <p className="max-w-xl mx-auto mt-4 text-brand-text-sec">
               Cubrimos todas las necesidades empresariales de cumplimiento, prevención y gestión
               organizacional.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid max-w-4xl gap-4 mx-auto sm:grid-cols-2 lg:grid-cols-3">
             {keyServices.map((service) => (
               <div
                 key={service}
-                className="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm"
+                className="flex items-center gap-3 p-4 bg-white shadow-sm rounded-xl"
               >
-                <CheckCircle className="w-5 h-5 text-brand-secondary flex-shrink-0" />
-                <span className="text-brand-text font-medium">{service}</span>
+                <CheckCircle className="flex-shrink-0 w-5 h-5 text-brand-secondary" />
+                <span className="font-medium text-brand-text">{service}</span>
               </div>
             ))}
           </div>
@@ -155,18 +155,18 @@ const NosotrosPage = () => {
 
       {/* Timeline */}
       <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
+        <div className="px-6 mx-auto max-w-container">
           <div className="text-center mb-14">
-            <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+            <span className="text-sm font-semibold tracking-widest uppercase text-brand-secondary">
               Nuestra historia
             </span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+            <h2 className="mt-2 text-3xl font-bold md:text-4xl text-brand-primary">
               Una década de crecimiento
             </h2>
           </div>
 
           {/* Desktop: alternating timeline */}
-          <div className="hidden md:block relative">
+          <div className="relative hidden md:block">
             {/* Center line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-border -translate-x-1/2" />
             <div className="space-y-12">
@@ -183,12 +183,12 @@ const NosotrosPage = () => {
                       }`}
                     >
                       <h3 className="text-lg font-bold text-brand-primary">{item.title}</h3>
-                      <p className="mt-2 text-brand-text-sec text-sm leading-relaxed">{item.desc}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-brand-text-sec">{item.desc}</p>
                     </div>
                   </div>
                   {/* Year badge */}
-                  <div className="flex-shrink-0 flex flex-col items-center z-10">
-                    <div className="w-16 h-16 rounded-full bg-brand-primary text-white font-bold text-sm flex items-center justify-center shadow-md">
+                  <div className="z-10 flex flex-col items-center flex-shrink-0">
+                    <div className="flex items-center justify-center w-16 h-16 text-sm font-bold text-white rounded-full shadow-md bg-brand-primary">
                       {item.year}
                     </div>
                   </div>
@@ -200,17 +200,17 @@ const NosotrosPage = () => {
           </div>
 
           {/* Mobile: single column timeline */}
-          <div className="md:hidden relative pl-10">
+          <div className="relative pl-10 md:hidden">
             <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-brand-border" />
             <div className="space-y-8">
               {timelineItems.map((item) => (
                 <div key={item.year} className="relative">
-                  <div className="absolute -left-6 top-2 w-10 h-10 rounded-full bg-brand-primary text-white font-bold text-xs flex items-center justify-center shadow-md">
+                  <div className="absolute flex items-center justify-center w-10 h-10 text-xs font-bold text-white rounded-full shadow-md -left-6 top-2 bg-brand-primary">
                     {item.year}
                   </div>
-                  <div className="bg-white rounded-2xl border border-brand-border/40 shadow-sm p-5">
+                  <div className="p-5 bg-white border shadow-sm rounded-2xl border-brand-border/40">
                     <h3 className="text-base font-bold text-brand-primary">{item.title}</h3>
-                    <p className="mt-1 text-brand-text-sec text-sm leading-relaxed">{item.desc}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-brand-text-sec">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -221,23 +221,23 @@ const NosotrosPage = () => {
 
       {/* Misión y Visión */}
       <section className="py-20 bg-brand-bg-alt">
-        <div className="max-w-container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-primary">Misión y Visión</h2>
+        <div className="px-6 mx-auto max-w-container">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold md:text-4xl text-brand-primary">Misión y Visión</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-brand-primary text-white p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-4">Nuestra Misión</h3>
-              <p className="text-white/85 leading-relaxed">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="p-8 text-white bg-brand-primary rounded-2xl">
+              <h3 className="mb-4 text-2xl font-bold">Nuestra Misión</h3>
+              <p className="leading-relaxed text-white/85">
                 Brindar asesoría integral a pequeñas y medianas empresas en Seguridad y Salud en el
                 Trabajo, derecho laboral, gestión del talento humano y servicios contables, ofreciendo
                 soluciones técnicas, jurídicas y estratégicas que promuevan el cumplimiento normativo,
                 la prevención de riesgos y el crecimiento sostenible de las organizaciones.
               </p>
             </div>
-            <div className="bg-brand-secondary text-white p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-4">Nuestra Visión</h3>
-              <p className="text-white/85 leading-relaxed">
+            <div className="p-8 text-white bg-brand-secondary rounded-2xl">
+              <h3 className="mb-4 text-2xl font-bold">Nuestra Visión</h3>
+              <p className="leading-relaxed text-white/85">
                 Para el año 2030, Gestus Soluciones Integrales S.A.S será reconocida en el Eje
                 Cafetero y a nivel nacional como una firma líder en asesoría empresarial integral
                 para pymes, destacándose por la excelencia técnica, el enfoque preventivo, la
@@ -250,23 +250,23 @@ const NosotrosPage = () => {
 
       {/* Valores corporativos */}
       <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+        <div className="px-6 mx-auto max-w-container">
+          <div className="mb-12 text-center">
+            <span className="text-sm font-semibold tracking-widest uppercase text-brand-secondary">
               Lo que nos guía
             </span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+            <h2 className="mt-2 text-3xl font-bold md:text-4xl text-brand-primary">
               Nuestros valores corporativos
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {values.map(({ title, description }) => (
-              <div key={title} className="bg-brand-bg-alt rounded-2xl p-6 shadow-sm card-hover">
+              <div key={title} className="p-6 shadow-sm bg-brand-bg-alt rounded-2xl card-hover">
                 <div className="flex items-center gap-3 mb-3">
-                  <CheckCircle className="w-5 h-5 text-brand-accent flex-shrink-0" />
+                  <CheckCircle className="flex-shrink-0 w-5 h-5 text-brand-accent" />
                   <h3 className="text-lg font-bold text-brand-primary">{title}</h3>
                 </div>
-                <p className="text-brand-text-sec text-sm leading-relaxed">{description}</p>
+                <p className="text-sm leading-relaxed text-brand-text-sec">{description}</p>
               </div>
             ))}
           </div>

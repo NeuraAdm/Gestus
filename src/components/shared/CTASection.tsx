@@ -13,7 +13,7 @@ const CTASection = () => (
       </p>
       <Link
         to="/contacto"
-        className="mt-8 inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-secondary transition-colors duration-200"
+        className="mt-8 inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-full font-semibold shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)] hover:bg-brand-secondary hover:-translate-y-[1px] active:translate-y-0 active:shadow-[var(--shadow-xs)] transition-all duration-[250ms] ease-out focus-visible:outline-none focus-visible:shadow-[var(--shadow-focus)]"
       >
         Escríbenos <ArrowRight className="w-4 h-4" />
       </Link>

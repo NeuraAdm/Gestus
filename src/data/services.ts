@@ -1,12 +1,12 @@
-import imgCYA from '../../images/CYA.png';
-import imgDEI from '../../images/DEI.png';
-import imgADR from '../../images/ADR.png';
-import imgCSG from '../../images/CSG.png';
-import imgASG from '../../images/ASG.png';
-import imgIDA from '../../images/IDA.png';
-import imgALS from '../../images/ALS.png';
-import imgGTH from '../../images/GTH.png';
-import imgACF from '../../images/ACF.png';
+import imgCYA from '../../images/CYA.jpeg';
+import imgDEI from '../../images/DEI.jpeg';
+import imgADR from '../../images/ADR.jpeg';
+import imgCSG from '../../images/CSG.jpeg';
+import imgASG from '../../images/ASG.jpeg';
+import imgIDA from '../../images/IDA.jpeg';
+import imgALS from '../../images/ALS.jpeg';
+import imgGTH from '../../images/GTH.jpeg';
+import imgACF from '../../images/ACF.jpeg';
 
 export interface ServiceData {
   slug: string;

@@ -16,7 +16,7 @@ type FeedItem =
   | { kind: 'post'; data: BlogPost }
   | { kind: 'magazine'; data: Magazine };
 
-import heroImg from '../../images/gestus5.jpg';
+import heroImg from '../../images/hero.jpeg';
 import service1Img from '../../images/CYA.png';
 import service2Img from '../../images/DEI.png';
 import service3Img from '../../images/ADR.png';
@@ -144,30 +144,30 @@ const HomePage = () => {
 
       {/* 2. Propuesta de valor */}
       <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
+        <div className="px-6 mx-auto max-w-container">
           <div className="text-center mb-14">
-            <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+            <span className="text-sm font-semibold tracking-widest uppercase text-brand-secondary">
               ¿Por qué elegirnos?
             </span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+            <h2 className="mt-2 text-3xl font-bold md:text-4xl text-brand-primary">
               Nuestra propuesta de valor
             </h2>
-            <p className="mt-4 text-brand-text-sec max-w-2xl mx-auto text-lg">
+            <p className="max-w-2xl mx-auto mt-4 text-lg text-brand-text-sec">
               En Gestus trabajamos con un enfoque preventivo, estratégico y ajustado a la realidad
               de cada empresa.
             </p>
           </div>
-          <div ref={valueSectionRef} className="reveal grid md:grid-cols-3 gap-8">
+          <div ref={valueSectionRef} className="grid gap-8 reveal md:grid-cols-3">
             {valueProps.map(({ icon: Icon, title, description }) => (
               <div
                 key={title}
-                className="flex flex-col items-center text-center p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200"
+                className="flex flex-col items-center p-8 text-center transition-shadow duration-200 border border-gray-100 shadow-sm rounded-2xl hover:shadow-md"
               >
-                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-brand-bg-alt mb-5">
+                <div className="flex items-center justify-center mb-5 rounded-full w-14 h-14 bg-brand-bg-alt">
                   <Icon className="w-7 h-7 text-brand-secondary" />
                 </div>
-                <h3 className="text-xl font-bold text-brand-primary mb-3">{title}</h3>
-                <p className="text-brand-text-sec leading-relaxed">{description}</p>
+                <h3 className="mb-3 text-xl font-bold text-brand-primary">{title}</h3>
+                <p className="leading-relaxed text-brand-text-sec">{description}</p>
               </div>
             ))}
           </div>
@@ -179,41 +179,41 @@ const HomePage = () => {
 
       {/* 3. Servicios destacados */}
       <section className="py-20 bg-brand-bg-alt">
-        <div className="max-w-container mx-auto px-6">
+        <div className="px-6 mx-auto max-w-container">
           <div className="text-center mb-14">
-            <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+            <span className="text-sm font-semibold tracking-widest uppercase text-brand-secondary">
               Lo que hacemos
             </span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+            <h2 className="mt-2 text-3xl font-bold md:text-4xl text-brand-primary">
               Servicios destacados
             </h2>
-            <p className="mt-4 text-brand-text-sec max-w-2xl mx-auto text-lg">
+            <p className="max-w-2xl mx-auto mt-4 text-lg text-brand-text-sec">
               Soluciones técnicas, jurídicas y estratégicas diseñadas para proteger a su empresa y
               a su equipo.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-3">
             {featuredServices.map((service) => (
               <div
                 key={service.title}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col"
+                className="flex flex-col overflow-hidden transition-shadow duration-300 bg-white shadow-sm rounded-2xl hover:shadow-lg"
               >
-                <div className="h-44 relative overflow-hidden bg-brand-primary/10">
+                <div className="relative overflow-hidden h-44 bg-brand-primary/10">
                   <img
                     src={service.img}
                     alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    className="absolute inset-0 object-cover w-full h-full transition-transform duration-300 hover:scale-105"
                     loading="lazy"
                   />
                 </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-brand-primary mb-3">{service.title}</h3>
-                  <p className="text-brand-text-sec text-sm leading-relaxed flex-1">
+                <div className="flex flex-col flex-1 p-6">
+                  <h3 className="mb-3 text-xl font-bold text-brand-primary">{service.title}</h3>
+                  <p className="flex-1 text-sm leading-relaxed text-brand-text-sec">
                     {service.description}
                   </p>
                   <Link
                     to={service.to}
-                    className="mt-5 inline-flex items-center gap-2 text-brand-secondary font-semibold text-sm hover:text-brand-primary transition-colors"
+                    className="inline-flex items-center gap-2 mt-5 text-sm font-semibold transition-colors text-brand-secondary hover:text-brand-primary"
                   >
                     Ver más <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -221,10 +221,10 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="mt-10 text-center">
             <Link
               to="/servicios"
-              className="inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-secondary transition-colors duration-200"
+              className="inline-flex items-center gap-2 px-8 py-3 font-semibold text-white transition-colors duration-200 rounded-full bg-brand-primary hover:bg-brand-secondary"
             >
               Ver todos los servicios <ArrowRight className="w-4 h-4" />
             </Link>
@@ -236,33 +236,33 @@ const HomePage = () => {
       <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
 
       {/* 4. Por qué elegirnos */}
-      <section className="relative py-20 bg-brand-primary text-white overflow-hidden">
+      <section className="relative py-20 overflow-hidden text-white bg-brand-primary">
         {/* Blob decorations */}
         <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-brand-secondary/20 blur-[80px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-brand-secondary/15 blur-[60px] pointer-events-none" />
 
-        <div className="relative max-w-container mx-auto px-6">
+        <div className="relative px-6 mx-auto max-w-container">
           <div className="text-center mb-14">
-            <span className="inline-block text-white/70 font-semibold text-sm uppercase tracking-widest mb-2">
+            <span className="inline-block mb-2 text-sm font-semibold tracking-widest uppercase text-white/70">
               Nuestra diferencia
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-3xl font-bold text-white md:text-4xl">
               ¿Por qué elegir Gestus?
             </h2>
-            <p className="mt-4 text-white/75 max-w-xl mx-auto">
+            <p className="max-w-xl mx-auto mt-4 text-white/75">
               Combinamos experiencia, compromiso y un equipo interdisciplinario para ser el aliado
               que su empresa necesita.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             {reasons.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-xl bg-white/10">
                   <Icon className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-1">{title}</h3>
-                  <p className="text-white/75 leading-relaxed text-sm">{desc}</p>
+                  <h3 className="mb-1 text-lg font-bold text-white">{title}</h3>
+                  <p className="text-sm leading-relaxed text-white/75">{desc}</p>
                 </div>
               </div>
             ))}
@@ -276,19 +276,19 @@ const HomePage = () => {
           {/* por qué(#1B6688) → publicaciones(white) */}
           <SectionDivider prevColor="#1B6688" nextColor="#ffffff" variant="wave" flipX />
           <section className="py-20 bg-white">
-            <div className="max-w-container mx-auto px-6">
+            <div className="px-6 mx-auto max-w-container">
               <div className="text-center mb-14">
-                <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+                <span className="text-sm font-semibold tracking-widest uppercase text-brand-secondary">
                   Conocimiento SST
                 </span>
-                <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+                <h2 className="mt-2 text-3xl font-bold md:text-4xl text-brand-primary">
                   Últimas publicaciones
                 </h2>
-                <p className="mt-4 text-brand-text-sec max-w-2xl mx-auto text-lg">
+                <p className="max-w-2xl mx-auto mt-4 text-lg text-brand-text-sec">
                   Artículos, noticias y revistas sobre seguridad y salud en el trabajo.
                 </p>
               </div>
-              <div className="grid md:grid-cols-3 gap-8 items-start">
+              <div className="grid items-start gap-8 md:grid-cols-3">
                 {feedItems.map((item) =>
                   item.kind === 'post' ? (
                     <BlogCard key={item.data.id} post={item.data} />
@@ -297,16 +297,16 @@ const HomePage = () => {
                   )
                 )}
               </div>
-              <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4 mt-10">
                 <Link
                   to="/blog"
-                  className="inline-flex items-center gap-2 border-2 border-brand-primary text-brand-primary px-7 py-3 rounded-full font-semibold hover:bg-brand-primary hover:text-white transition-all duration-200"
+                  className="inline-flex items-center gap-2 py-3 font-semibold transition-all duration-200 border-2 rounded-full border-brand-primary text-brand-primary px-7 hover:bg-brand-primary hover:text-white"
                 >
                   Ver blog <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/revistas"
-                  className="inline-flex items-center gap-2 border-2 border-brand-accent text-brand-accent px-7 py-3 rounded-full font-semibold hover:bg-brand-accent hover:text-white transition-all duration-200"
+                  className="inline-flex items-center gap-2 py-3 font-semibold transition-all duration-200 border-2 rounded-full border-brand-accent text-brand-accent px-7 hover:bg-brand-accent hover:text-white"
                 >
                   Ver revistas <ArrowRight className="w-4 h-4" />
                 </Link>

@@ -100,7 +100,7 @@ const Team = () => {
         </div>
         <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {team.map((member, index) => (
-            <div key={index} className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2">
+            <div key={index} className="rounded-2xl overflow-hidden shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-all duration-[250ms] ease-out hover:-translate-y-[2px] [@media(prefers-reduced-motion:reduce)]:hover:translate-y-0">
               <div className="relative">
                 <img
                     className="h-64 w-full object-contain transform hover:scale-105 transition duration-300 ease-in-out"

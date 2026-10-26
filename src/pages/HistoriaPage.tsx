@@ -2,7 +2,7 @@ import React from 'react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
-import heroImg from '../../images/gestus3.jpg';
+import heroImg from '../../images/H-HS.jpeg';
 
 const milestones = [
   {
@@ -63,14 +63,14 @@ const HistoriaPage = () => {
 
       {/* Intro */}
       <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6 max-w-3xl mx-auto text-center">
-          <span className="text-brand-secondary font-semibold text-sm uppercase tracking-widest">
+        <div className="max-w-3xl px-6 mx-auto text-center max-w-container">
+          <span className="text-sm font-semibold tracking-widest uppercase text-brand-secondary">
             Trayectoria
           </span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-brand-primary">
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl text-brand-primary">
             Más de una década al servicio de las empresas
           </h2>
-          <p className="mt-6 text-lg text-brand-text-sec leading-relaxed">
+          <p className="mt-6 text-lg leading-relaxed text-brand-text-sec">
             Desde nuestra fundación en Pereira, hemos acompañado a cientos de empresas en el
             camino hacia el cumplimiento normativo, la prevención de riesgos y el crecimiento
             organizacional sostenible. Nuestra historia es la historia de las pymes que decidieron
@@ -83,7 +83,7 @@ const HistoriaPage = () => {
 
       {/* Timeline */}
       <section className="py-10 pb-20 bg-brand-bg-alt">
-        <div className="max-w-container mx-auto px-6">
+        <div className="px-6 mx-auto max-w-container">
           <div className="relative">
             {/* Vertical line */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-secondary/20 -translate-x-1/2" />
@@ -98,22 +98,22 @@ const HistoriaPage = () => {
                 >
                   {/* Content */}
                   <div className="flex-1 bg-white rounded-2xl p-6 shadow-sm md:max-w-[calc(50%-2.5rem)]">
-                    <span className="inline-block bg-brand-primary text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                    <span className="inline-block px-3 py-1 mb-3 text-xs font-bold text-white rounded-full bg-brand-primary">
                       {milestone.year}
                     </span>
-                    <h3 className="text-xl font-bold text-brand-primary mb-3">
+                    <h3 className="mb-3 text-xl font-bold text-brand-primary">
                       {milestone.title}
                     </h3>
-                    <p className="text-brand-text-sec text-sm leading-relaxed">
+                    <p className="text-sm leading-relaxed text-brand-text-sec">
                       {milestone.description}
                     </p>
                   </div>
 
                   {/* Center dot */}
-                  <div className="hidden md:flex flex-shrink-0 w-5 h-5 rounded-full bg-brand-secondary border-4 border-white shadow-md self-center z-10" />
+                  <div className="z-10 self-center flex-shrink-0 hidden w-5 h-5 border-4 border-white rounded-full shadow-md md:flex bg-brand-secondary" />
 
                   {/* Spacer for alternating layout */}
-                  <div className="hidden md:block flex-1" />
+                  <div className="flex-1 hidden md:block" />
                 </div>
               ))}
             </div>
@@ -124,9 +124,9 @@ const HistoriaPage = () => {
       <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
 
       {/* Closing statement */}
-      <section className="py-16 bg-brand-primary text-white text-center">
-        <div className="max-w-container mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold max-w-3xl mx-auto leading-relaxed">
+      <section className="py-16 text-center text-white bg-brand-primary">
+        <div className="px-6 mx-auto max-w-container">
+          <h2 className="max-w-3xl mx-auto text-2xl font-bold leading-relaxed md:text-3xl">
             "La historia de Gestus se escribe junto a cada empresa que decidió apostar
             por la seguridad, el cumplimiento y el crecimiento responsable."
           </h2>

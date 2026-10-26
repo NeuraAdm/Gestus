@@ -111,9 +111,9 @@ const Services = () => {
             {services.map((service) => (
               <div
                 key={service.slug}
-                className="group relative flex w-80 flex-col rounded-xl bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-brand-border/40"
+                className="group relative flex w-80 flex-col rounded-xl bg-white shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-all duration-[250ms] ease-out hover:-translate-y-[2px] border border-brand-border/40 [@media(prefers-reduced-motion:reduce)]:hover:translate-y-0"
               >
-                <div className="relative mx-4 -mt-6 h-48 overflow-hidden rounded-xl shadow-md bg-brand-primary">
+                <div className="relative mx-4 -mt-6 h-48 overflow-hidden rounded-xl shadow-[var(--shadow-sm)] bg-brand-primary">
                   {service.img && (
                     <img
                       src={service.img}
@@ -135,7 +135,7 @@ const Services = () => {
                 <div className="p-6 pt-0">
                   <Link
                     to={`/servicios/${service.slug}`}
-                    className="group w-full inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white rounded-lg bg-brand-accent hover:bg-brand-accent-hover shadow-sm transition-all duration-300 hover:-translate-y-0.5"
+                    className="group w-full inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white rounded-lg bg-brand-accent hover:bg-brand-accent-hover shadow-[var(--shadow-xs)] hover:shadow-[var(--shadow-sm)] transition-all duration-[250ms] ease-out hover:-translate-y-[1px] active:translate-y-0 active:shadow-[var(--shadow-xs)] focus-visible:outline-none focus-visible:shadow-[var(--shadow-focus)]"
                   >
                     Ver más
                     <svg

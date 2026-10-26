@@ -13,7 +13,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
   const readingTime = getReadingTimeLabel(post.content ?? '');
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_-40px_rgba(15,23,42,0.55)] transition duration-300 hover:-translate-y-1">
+    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] transition-all duration-[250ms] ease-out hover:-translate-y-[2px] [@media(prefers-reduced-motion:reduce)]:hover:translate-y-0">
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
         {post.cover_url ? (
           <img

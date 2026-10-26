@@ -2,7 +2,7 @@ import React from 'react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
-import heroImg from '../../images/gestus4.jpg';
+import heroImg from '../../images/H-EQ.jpeg';
 
 import image1 from '../../images/yeral.jpeg';
 import image2 from '../../images/oscar.jpeg';

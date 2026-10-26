@@ -128,7 +128,7 @@ const Navbar = () => {
 
                 {openDropdown === key && (
                   <div
-                    className="animate-dropdown absolute top-full left-0 mt-3 w-64 bg-white rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] border border-gray-100/80 py-2 z-50"
+                    className="animate-dropdown absolute top-full left-0 mt-3 w-64 bg-white rounded-xl shadow-[var(--shadow-md)] border border-gray-100/80 py-2 z-50"
                     onMouseEnter={() => handleMouseEnter(key)}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -209,7 +209,7 @@ const Navbar = () => {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-y-0 right-0 w-[280px] bg-brand-primary z-50 transform transition-transform duration-300 md:hidden flex flex-col shadow-[-8px_0_32px_rgba(0,0,0,0.2)] ${
+        className={`fixed inset-y-0 right-0 w-[280px] bg-brand-primary z-50 transform transition-transform duration-300 md:hidden flex flex-col shadow-[var(--shadow-lg)] ${
           mobileOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         aria-hidden={!mobileOpen}

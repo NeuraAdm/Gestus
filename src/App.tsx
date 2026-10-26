@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 import PublicLayout from './components/layout/PublicLayout';
 import AdminLayout from './components/layout/AdminLayout';
 import RequireAuth from './components/admin/RequireAuth';
@@ -24,7 +25,9 @@ import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/nosotros" element={<NosotrosPage />} />
@@ -94,6 +97,7 @@ function App() {
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
+    </>
   );
 }
 
