@@ -64,7 +64,7 @@ const Navbar = () => {
 
   const navBg = scrolled
     ? 'bg-brand-primary shadow-[0_4px_20px_rgba(0,0,0,0.12)]'
-    : 'bg-brand-primary/95 backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.06)]';
+    : 'bg-brand-primary shadow-[0_4px_20px_rgba(0,0,0,0.06)]';
 
   const handleMouseEnter = (key: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -175,7 +175,7 @@ const Navbar = () => {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white/40"
+            className="md:hidden text-white p-3 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-md focus:outline-none focus:ring-2 focus:ring-white/40 active:bg-white/10"
             aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={mobileOpen}
           >
@@ -229,7 +229,7 @@ const Navbar = () => {
         <nav className="flex-1 overflow-y-auto py-4 px-3">
           <Link
             to="/"
-            className="block px-4 py-3 text-white font-semibold text-base rounded-xl hover:bg-white/10 transition-colors"
+            className="block px-4 py-3.5 min-h-[44px] text-white font-semibold text-base rounded-xl hover:bg-white/10 active:bg-white/20 transition-colors"
           >
             Inicio
           </Link>
@@ -237,7 +237,7 @@ const Navbar = () => {
           {Object.entries(dropdowns).map(([key, dropdown]) => (
             <div key={key}>
               <button
-                className="w-full flex items-center justify-between px-4 py-3 text-white font-semibold text-base rounded-xl hover:bg-white/10 transition-colors"
+                className="w-full flex items-center justify-between px-4 py-3.5 min-h-[44px] text-white font-semibold text-base rounded-xl hover:bg-white/10 active:bg-white/20 transition-colors"
                 onClick={() =>
                   setMobileExpanded(mobileExpanded === key ? null : key)
                 }
@@ -256,7 +256,7 @@ const Navbar = () => {
                     <Link
                       key={item.to}
                       to={item.to}
-                      className="block py-2.5 text-sm text-white/75 hover:text-white transition-colors"
+                      className="block py-3 min-h-[44px] flex items-center text-sm text-white/75 hover:text-white active:text-white transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -268,7 +268,7 @@ const Navbar = () => {
 
           <Link
             to="/contacto"
-            className="block px-4 py-3 text-white font-semibold text-base rounded-xl hover:bg-white/10 transition-colors"
+            className="block px-4 py-3.5 min-h-[44px] text-white font-semibold text-base rounded-xl hover:bg-white/10 active:bg-white/20 transition-colors"
           >
             Contacto
           </Link>

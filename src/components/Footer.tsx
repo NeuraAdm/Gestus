@@ -53,7 +53,7 @@ const Footer = () => {
             ) : (
               <form
                 onSubmit={handleNewsletter}
-                className="flex gap-2 w-full md:w-auto"
+                className="flex flex-col sm:flex-row gap-2 w-full md:w-auto"
                 aria-label="Formulario de suscripción"
               >
                 <input
@@ -127,7 +127,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="p-2.5 rounded-full border border-white/20 text-white hover:bg-brand-accent hover:border-brand-accent transition-all duration-200"
+                  className="p-3 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-brand-accent hover:border-brand-accent active:bg-brand-accent-hover transition-all duration-200"
                 >
                   {icon}
                 </a>

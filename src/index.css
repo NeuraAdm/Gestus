@@ -3,22 +3,30 @@
 @tailwind utilities;
 
 :root {
-  /* Derivados del logo Gestus: azul cielo (H199°) + verde SST (H131°) */
-  --color-primary:          #1B6688;
-  --color-primary-hover:    #14506A;
-  --color-primary-soft:     #EBF5F9;
-  --color-secondary:        #2C8DBA;
-  --color-secondary-hover:  #226E94;
-  --color-accent:           #378548;
-  --color-accent-hover:     #2B6A38;
+  /* Derivados del logo Gestus: azul cielo (H199°) + verde SST (H131°) — más saturados y vivos */
+  --color-primary:          #0E6B96;   /* H199, S~83%, L~32% */
+  --color-primary-hover:    #0A567A;
+  --color-primary-soft:     #E6F4FA;
+  --color-secondary:        #1D9BD1;   /* H199, S~75%, L~47% */
+  --color-secondary-hover:  #157AAB;
+  --color-accent:           #22A35A;   /* H131, S~65%, L~39% */
+  --color-accent-hover:     #1A8247;
+  --color-accent-soft:      #E8F7EE;
   --color-bg:               #FFFFFF;
-  --color-bg-alt:           #F2F7FA;
-  --color-border:           #C5D9E3;
-  --color-text:             #1A2B31;
-  --color-text-sec:         #536870;
-  --color-success:          #2F7D3B;
-  --color-warning:          #B5740A;
-  --color-error:            #C23434;
+  --color-bg-alt:           #F1F7FA;
+  --color-bg-deep:          #0A4A6B;
+  --color-border:           #C9DDE7;
+  --color-text:             #0F2027;
+  --color-text-sec:         #4E6570;
+  --color-success:          #22A35A;
+  --color-warning:          #C07800;
+  --color-error:            #C23333;
+
+  /* Gradientes reutilizables */
+  --gradient-primary:       linear-gradient(135deg, #0E6B96 0%, #1D9BD1 100%);
+  --gradient-navbar:        linear-gradient(135deg, #0E6B96 0%, #0A4A6B 100%);
+  --gradient-footer:        linear-gradient(160deg, #0A4A6B 0%, #0E6B96 100%);
+  --gradient-accent:        linear-gradient(135deg, #22A35A 0%, #1D9BD1 100%);
 
   /* Sombras */
   --shadow-xs:  0 1px 2px rgba(15, 23, 42, 0.04);
@@ -47,6 +55,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -54,6 +63,16 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
   line-height: 1.7;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 h1,
@@ -170,7 +189,7 @@ section[id] {
 .markdown blockquote {
   border-left: 3px solid var(--color-accent);
   padding-left: 1rem;
-  color: #334155;
+  color: var(--color-text-sec);
   background: var(--color-bg-alt);
   border-radius: 0.75rem;
   margin: 1.5rem 0;
@@ -178,7 +197,7 @@ section[id] {
 
 .markdown img {
   border-radius: 1rem;
-  box-shadow: 0 20px 50px rgba(27, 102, 136, 0.12);
+  box-shadow: 0 20px 50px rgba(14, 107, 150, 0.12);
   margin: 1.5rem 0;
 }
 

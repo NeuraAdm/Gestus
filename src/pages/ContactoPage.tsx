@@ -372,7 +372,7 @@ const ContactoPage = () => {
         />
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" />
 
       <CTASection />
     </>

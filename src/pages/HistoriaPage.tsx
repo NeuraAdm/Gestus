@@ -79,7 +79,7 @@ const HistoriaPage = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" />
 
       {/* Timeline */}
       <section className="py-10 pb-20 bg-brand-bg-alt">
@@ -121,7 +121,7 @@ const HistoriaPage = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
+      <SectionDivider prevColor="#F1F7FA" nextColor="#0E6B96" variant="wave-alt" />
 
       {/* Closing statement */}
       <section className="py-16 text-center text-white bg-brand-primary">
@@ -134,7 +134,7 @@ const HistoriaPage = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#1B6688" nextColor="#F2F7FA" variant="wave" />
+      <SectionDivider prevColor="#0E6B96" nextColor="#F1F7FA" variant="wave" />
 
       <CTASection />
     </>

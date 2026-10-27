@@ -2,6 +2,35 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { MessageCircle, Send, X } from 'lucide-react';
 
+const GUS_IMG_BASE = '/images';
+
+const GUS_IMAGES = {
+  default:    `${GUS_IMG_BASE}/GUS-LOGO.jpeg`,
+  saludo:     `${GUS_IMG_BASE}/GUS-CORDIAL-SALUDO.jpeg`,
+  buenosDias: `${GUS_IMG_BASE}/GUS-BUENOS-DIAS.jpeg`,
+  buenasTardes:`${GUS_IMG_BASE}/GUS-BUENAS-TARDES.jpeg`,
+  felizDia:   `${GUS_IMG_BASE}/GUS-FELIZ-DIA.jpeg`,
+  confirmado: `${GUS_IMG_BASE}/GUS-CONFIRMADO.jpeg`,
+  excelente:  `${GUS_IMG_BASE}/GUS-EXCELENTE-TRABAJO.jpeg`,
+  gracias:    `${GUS_IMG_BASE}/GUS-MUCHAS-GRACIAS.jpeg`,
+  muyBien:    `${GUS_IMG_BASE}/GUS-MUY-BIEN.jpeg`,
+};
+
+function getGusImageForContext(step: string, text: string): string {
+  const n = text.toLowerCase();
+  if (n.includes('gracias') || n.includes('thank')) return GUS_IMAGES.gracias;
+  if (n.includes('confirmado') || n.includes('anotado') || n.includes('propuesta')) return GUS_IMAGES.confirmado;
+  if (n.includes('excelente') || n.includes('enviamos')) return GUS_IMAGES.excelente;
+  if (n.includes('faq') || n.includes('¿qué es') || n.includes('¿cuándo') || n.includes('¿cada')) return GUS_IMAGES.muyBien;
+  if (step === 'cierre') return GUS_IMAGES.confirmado;
+  if (step === 'email-capture' || n.includes('correo electrónico')) return GUS_IMAGES.excelente;
+  const hour = new Date().getHours();
+  if (n.includes('bienvenido') || n.includes('hola') || n.includes('¿en qué')) {
+    return hour < 12 ? GUS_IMAGES.buenosDias : GUS_IMAGES.buenasTardes;
+  }
+  return GUS_IMAGES.default;
+}
+
 interface Message {
   id: number;
   type: 'bot' | 'user';
@@ -223,6 +252,7 @@ const Chatbot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
+  const [gusAvatar, setGusAvatar] = useState<string>(GUS_IMAGES.default);
 
   useEffect(() => {
     let chatRoot = document.getElementById('chatbot-root');
@@ -288,11 +318,13 @@ const Chatbot: React.FC = () => {
     return URGENCY_KEYWORDS.some((kw) => n.includes(normalize(kw)));
   };
 
-  const addBot = (text: string, options?: string[]) =>
+  const addBot = (text: string, options?: string[]) => {
     setMessages((prev) => [
       ...prev,
       { id: Date.now() + Math.random(), type: 'bot', text, timestamp: new Date(), options },
     ]);
+    setGusAvatar(getGusImageForContext(chatState.step, text));
+  };
 
   const addUser = (text: string) =>
     setMessages((prev) => [
@@ -311,9 +343,12 @@ const Chatbot: React.FC = () => {
   const greeting = (nombre?: string) => (nombre ? `Hola ${nombre}` : 'Hola');
 
   const showWelcome = () => {
+    const hour = new Date().getHours();
+    const saludo = hour < 12 ? '¡Buenos días!' : hour < 19 ? '¡Buenas tardes!' : '¡Buenas noches!';
+    setGusAvatar(hour < 12 ? GUS_IMAGES.buenosDias : GUS_IMAGES.buenasTardes);
     setChatState({ step: 'menu', data: {} });
     addBot(
-      '¡Bienvenido/a a Gestus Soluciones Integrales! 🛡️\n\nSomos expertos en SG-SST, prevención de riesgos laborales y seguridad industrial en Colombia. Hemos asesorado a más de 120 empresas en el Eje Cafetero.\n\n¿En qué podemos ayudarte hoy?',
+      `${saludo} Soy GUS, tu asistente de Gestus Soluciones Integrales. 🦉\n\nCon ojo avizor en cada proceso, estoy aquí para orientarte en SG-SST, prevención de riesgos y todo lo que necesita tu empresa. Más de 120 organizaciones en el Eje Cafetero ya confían en nosotros.\n\n¿En qué te ayudo hoy?`,
       MENU_OPTIONS,
     );
   };
@@ -352,7 +387,7 @@ const Chatbot: React.FC = () => {
 
   const showMenu = (nombre?: string) => {
     setChatState((prev) => ({ ...prev, step: 'menu' }));
-    addBot(`${greeting(nombre)}, ¿en qué más puedo ayudarte?`, MENU_OPTIONS);
+    addBot(`${greeting(nombre)}, soy GUS. ¿En qué más puedo ayudarte?`, MENU_OPTIONS);
   };
 
   const showServicesMenu = () => {
@@ -907,8 +942,14 @@ const Chatbot: React.FC = () => {
       className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} mb-4 animate-fadeIn`}
     >
       {message.type === 'bot' && (
-        <div className="mr-2 mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-teal-700 text-sm font-bold text-white shadow-sm">
-          G
+        <div className="mr-2 mt-1 flex-shrink-0">
+          <img
+            src={gusAvatar}
+            alt="GUS"
+            loading="lazy"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).src = GUS_IMAGES.default; }}
+            className="h-8 w-8 rounded-full object-cover shadow-sm ring-2 ring-white"
+          />
         </div>
       )}
       <div className={`max-w-[82%] ${message.type === 'user' ? 'order-2' : 'order-1'}`}>
@@ -916,8 +957,9 @@ const Chatbot: React.FC = () => {
           className={`rounded-2xl px-4 py-3 ${
             message.type === 'bot'
               ? 'rounded-tl-sm bg-white text-slate-800 shadow-md'
-              : 'rounded-tr-sm bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
+              : 'rounded-tr-sm text-white'
           }`}
+          style={message.type === 'user' ? { background: 'var(--gradient-primary)' } : undefined}
         >
           <p className="whitespace-pre-line text-sm leading-relaxed">{message.text}</p>
         </div>
@@ -927,7 +969,10 @@ const Chatbot: React.FC = () => {
               <button
                 key={index}
                 onClick={() => handleOptionClick(option)}
-                className="w-full rounded-xl border-2 border-emerald-100 bg-white px-4 py-2.5 text-left text-sm font-medium text-slate-700 shadow-sm transition-all duration-200 hover:scale-[1.01] hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-800 active:scale-[0.99]"
+                className="w-full rounded-xl border-2 bg-white px-4 py-2.5 text-left text-sm font-medium text-slate-700 shadow-sm transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+                style={{ borderColor: 'var(--color-border)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-secondary)'; e.currentTarget.style.background = 'var(--color-primary-soft)'; e.currentTarget.style.color = 'var(--color-primary)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border)'; e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#374151'; }}
               >
                 {option}
               </button>
@@ -977,7 +1022,10 @@ const Chatbot: React.FC = () => {
             </p>
             <button
               onClick={() => { setShowBubble(false); setIsOpen(true); }}
-              className="mt-3 w-full rounded-xl bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors"
+              className="mt-3 w-full rounded-xl px-3 py-2 text-xs font-semibold text-white transition-colors"
+              style={{ background: 'var(--color-primary)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary-hover)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--color-primary)'; }}
             >
               Iniciar chat ✨
             </button>
@@ -1008,12 +1056,12 @@ const Chatbot: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           transition: 'all 0.3s ease',
-          boxShadow: '0 10px 40px rgba(15, 118, 110, 0.4)',
+          boxShadow: '0 10px 40px rgba(14, 107, 150, 0.4)',
           zIndex: 10000,
           pointerEvents: 'auto',
           background: isOpen
             ? '#ef4444'
-            : 'linear-gradient(135deg, #10b981 0%, #0f766e 100%)',
+            : 'var(--gradient-navbar)',
         }}
         onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.1)'; }}
         onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
@@ -1051,7 +1099,7 @@ const Chatbot: React.FC = () => {
       {/* Ventana del chat */}
       {isOpen && (
         <div
-          className="animate-slideUp flex flex-col overflow-hidden rounded-3xl bg-white shadow-2xl"
+          className="chatbot-window animate-slideUp flex flex-col overflow-hidden rounded-3xl bg-white shadow-2xl"
           style={{
             position: 'fixed',
             bottom: '100px',
@@ -1064,34 +1112,46 @@ const Chatbot: React.FC = () => {
           }}
         >
           {/* Header */}
-          <div className="flex items-center gap-3 bg-gradient-to-r from-emerald-600 to-teal-700 p-4 text-white shadow-md">
-            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white/20 text-2xl backdrop-blur-sm">
-              🛡️
+          <div className="flex items-center gap-3 p-4 text-white shadow-md" style={{ background: 'var(--gradient-navbar)' }}>
+            <div className="flex-shrink-0">
+              <img
+                src={gusAvatar}
+                alt="GUS"
+                loading="lazy"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).src = GUS_IMAGES.default; }}
+                className="h-11 w-11 rounded-full object-cover ring-2 ring-white/40"
+              />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-bold text-base leading-tight">Asistente Gestus SST</h3>
-              <p className="flex items-center gap-1.5 text-xs text-emerald-100">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-green-300" />
-                Expertos en SG-SST · Más de 120 empresas asesoradas
+              <h3 className="font-bold text-base leading-tight">GUS — Asistente Gestus</h3>
+              <p className="flex items-center gap-1.5 text-xs" style={{ color: 'rgba(255,255,255,0.8)' }}>
+                <span className="h-2 w-2 animate-pulse rounded-full" style={{ background: 'var(--color-accent)' }} />
+                Siempre alerta · Más de 120 empresas asesoradas
               </p>
             </div>
           </div>
 
           {/* Mensajes */}
-          <div className="flex-1 overflow-y-auto bg-gradient-to-b from-emerald-50/60 to-white p-4">
+          <div className="flex-1 overflow-y-auto p-4" style={{ background: 'linear-gradient(to bottom, var(--color-primary-soft) 0%, #fff 100%)' }}>
             {messages.map(renderMessage)}
             {isTyping && (
               <div className="mb-4 flex animate-fadeIn justify-start">
-                <div className="mr-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-teal-700 text-sm font-bold text-white shadow-sm">
-                  G
+                <div className="mr-2 flex-shrink-0">
+                  <img
+                    src={gusAvatar}
+                    alt="GUS"
+                    loading="lazy"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = GUS_IMAGES.default; }}
+                    className="h-8 w-8 rounded-full object-cover shadow-sm ring-2 ring-white"
+                  />
                 </div>
                 <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-3 shadow-md">
                   <div className="flex items-center gap-1.5">
                     {[0, 150, 300].map((delay) => (
                       <div
                         key={delay}
-                        className="h-2 w-2 animate-bounce rounded-full bg-emerald-500"
-                        style={{ animationDelay: `${delay}ms` }}
+                        className="h-2 w-2 animate-bounce rounded-full"
+                        style={{ background: 'var(--color-secondary)', animationDelay: `${delay}ms` }}
                       />
                     ))}
                   </div>
@@ -1102,7 +1162,7 @@ const Chatbot: React.FC = () => {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-emerald-100 bg-white p-3">
+          <div className="bg-white p-3" style={{ borderTop: '1px solid var(--color-border)' }}>
             {/* Quick actions */}
             <div className="mb-2.5 flex flex-wrap gap-1.5">
               {QUICK_ACTIONS.map((action) => (
@@ -1115,7 +1175,10 @@ const Chatbot: React.FC = () => {
                     if (action.intent === 'faq') { addUser(action.label); withDelay(showFaqMenu); }
                     if (action.intent === 'whatsapp') openWhatsApp(chatState, 'Contacto rápido');
                   }}
-                  className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 transition-all hover:bg-emerald-100"
+                  className="rounded-full px-3 py-1 text-xs font-semibold transition-all"
+                  style={{ border: '1px solid var(--color-border)', background: 'var(--color-primary-soft)', color: 'var(--color-primary)' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-secondary-hover)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'var(--color-secondary)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--color-primary-soft)'; e.currentTarget.style.color = 'var(--color-primary)'; e.currentTarget.style.borderColor = 'var(--color-border)'; }}
                 >
                   {action.label}
                 </button>
@@ -1135,14 +1198,17 @@ const Chatbot: React.FC = () => {
                   }
                 }}
                 placeholder="Escribe tu consulta sobre SG-SST..."
-                className="flex-1 resize-none rounded-xl border-2 border-emerald-100 px-3 py-2.5 text-sm focus:border-emerald-400 focus:outline-none"
+                className="flex-1 resize-none rounded-xl border-2 px-3 py-2.5 text-sm focus:outline-none"
+                style={{ borderColor: 'var(--color-border)', maxHeight: '90px' }}
+                onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--color-primary)'; }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--color-border)'; }}
                 rows={1}
-                style={{ maxHeight: '90px' }}
               />
               <button
                 onClick={() => { if (inputText.trim()) handleTextInput(inputText.trim()); }}
                 disabled={!inputText.trim()}
-                className="flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-3 py-2.5 text-white shadow-sm transition-all hover:from-emerald-700 hover:to-teal-700 disabled:cursor-not-allowed disabled:opacity-40"
+                className="flex items-center justify-center rounded-xl px-3 py-2.5 text-white shadow-sm transition-all disabled:cursor-not-allowed disabled:opacity-40"
+                style={{ background: 'var(--gradient-primary)' }}
               >
                 <Send className="h-5 w-5" />
               </button>
@@ -1184,13 +1250,22 @@ const Chatbot: React.FC = () => {
 
         div[style*="overflow-y: auto"]::-webkit-scrollbar,
         .flex-1.overflow-y-auto::-webkit-scrollbar { width: 5px; }
-        .flex-1.overflow-y-auto::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        .flex-1.overflow-y-auto::-webkit-scrollbar-track { background: var(--color-bg-alt); border-radius: 10px; }
         .flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
-          background: linear-gradient(135deg, #10b981, #0f766e);
+          background: var(--gradient-primary);
           border-radius: 10px;
         }
         @media (max-width: 480px) {
           .chatbot-button { width: 56px !important; height: 56px !important; bottom: 16px !important; right: 16px !important; }
+          .chatbot-window {
+            left: 8px !important;
+            right: 8px !important;
+            bottom: 88px !important;
+            width: calc(100vw - 16px) !important;
+            max-width: none !important;
+            height: calc(100vh - 120px) !important;
+            border-radius: 1.25rem !important;
+          }
         }
       `}</style>
     </>

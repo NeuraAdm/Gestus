@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, Phone } from 'lucide-react';
 
 const TopBar = () => (
-  <div className="bg-brand-primary text-white text-xs" style={{ height: '36px' }}>
+  <div className="hidden sm:block bg-brand-primary text-white text-xs" style={{ height: '36px' }}>
     <div className="max-w-container mx-auto px-6 flex items-center justify-between h-full">
       <span className="hidden md:block text-white/70 text-xs tracking-wide">
         Pereira, Risaralda – Colombia &nbsp;·&nbsp; Lun–Vie 8:00–18:00

@@ -115,7 +115,7 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" flipX />
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" flipX />
 
       {/* 3. Benefits */}
       <section className="py-20 bg-brand-bg-alt">
@@ -138,7 +138,7 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#F2F7FA" nextColor="#ffffff" variant="wave" flipX />
+      <SectionDivider prevColor="#F1F7FA" nextColor="#ffffff" variant="wave" flipX />
 
       {/* 4. Phases */}
       <section className="py-20 bg-white">
@@ -169,7 +169,7 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#1B6688" variant="wave-alt" />
+      <SectionDivider prevColor="#ffffff" nextColor="#0E6B96" variant="wave-alt" />
 
       {/* 5. Deliverables */}
       <section className="py-16 bg-brand-primary text-white">
@@ -191,7 +191,7 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#1B6688" nextColor="#F2F7FA" variant="wave" />
+      <SectionDivider prevColor="#0E6B96" nextColor="#F1F7FA" variant="wave" />
 
       {/* 6. Sectors */}
       <section className="py-16 bg-brand-bg-alt">
@@ -210,7 +210,7 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#F2F7FA" nextColor="#ffffff" variant="wave" flipX />
+      <SectionDivider prevColor="#F1F7FA" nextColor="#ffffff" variant="wave" flipX />
 
       {/* 7. FAQ */}
       <section className="py-20 bg-white">
@@ -249,7 +249,7 @@ const ServiceDetailPage: React.FC = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" />
 
       {/* 8. Related services */}
       {relatedServices.length > 0 && (

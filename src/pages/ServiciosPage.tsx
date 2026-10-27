@@ -16,7 +16,7 @@ const ServiciosPage = () => {
         imageSrc={heroImg}
         imageAlt="Servicios de SST, asesoría jurídica y contable en Pereira, Risaralda"
         heightClass="min-h-[60vh]"
-        bottomGradientTo="#F2F7FA"
+        bottomGradientTo="#F1F7FA"
       />
 
       <section className="py-20 bg-brand-bg-alt">

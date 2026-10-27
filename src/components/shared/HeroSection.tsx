@@ -61,7 +61,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           className="absolute inset-0 lg:hidden"
           style={{
             background:
-              'linear-gradient(180deg, rgb(27,102,136) 0%, rgba(27,102,136,0.94) 50%, rgba(27,102,136,0.6) 78%, rgba(27,102,136,0.18) 100%)',
+              'linear-gradient(180deg, rgb(14,107,150) 0%, rgba(14,107,150,0.94) 50%, rgba(14,107,150,0.6) 78%, rgba(14,107,150,0.18) 100%)',
           }}
           aria-hidden="true"
         />
@@ -71,7 +71,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           className="absolute inset-0 hidden lg:block"
           style={{
             background:
-              'linear-gradient(90deg, rgb(27,102,136) 0%, rgb(27,102,136) 40%, rgba(27,102,136,0.82) 56%, rgba(27,102,136,0.35) 72%, rgba(27,102,136,0.06) 87%, transparent 100%)',
+              'linear-gradient(90deg, rgb(14,107,150) 0%, rgb(14,107,150) 40%, rgba(14,107,150,0.82) 56%, rgba(14,107,150,0.35) 72%, rgba(14,107,150,0.06) 87%, transparent 100%)',
           }}
           aria-hidden="true"
         />
@@ -184,7 +184,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(to right, rgba(27,102,136,0.82) 0%, rgba(27,102,136,0.55) 40%, rgba(27,102,136,0.15) 70%, transparent 100%)',
+            'linear-gradient(to right, rgba(14,107,150,0.82) 0%, rgba(14,107,150,0.55) 40%, rgba(14,107,150,0.15) 70%, transparent 100%)',
         }}
         aria-hidden="true"
       />

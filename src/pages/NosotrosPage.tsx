@@ -123,7 +123,7 @@ const NosotrosPage = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" flipX />
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" flipX />
 
       {/* Key services */}
       <section className="py-16 bg-brand-bg-alt">
@@ -151,7 +151,7 @@ const NosotrosPage = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#F2F7FA" nextColor="#ffffff" variant="wave" flipX />
+      <SectionDivider prevColor="#F1F7FA" nextColor="#ffffff" variant="wave" flipX />
 
       {/* Timeline */}
       <section className="py-20 bg-white">
@@ -273,7 +273,7 @@ const NosotrosPage = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" />
 
       <CTASection />
     </>

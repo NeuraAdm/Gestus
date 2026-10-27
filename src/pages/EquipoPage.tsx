@@ -142,7 +142,7 @@ const EquipoPage = () => {
         </div>
       </section>
 
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" flipX />
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" flipX />
 
       {/* Team grid */}
       <section className="pb-20 bg-brand-bg-alt">

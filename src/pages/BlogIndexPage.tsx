@@ -170,7 +170,7 @@ const BlogIndexPage = () => {
         </div>
       </div>
     </section>
-    <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
+    <SectionDivider prevColor="#F1F7FA" nextColor="#0E6B96" variant="wave-alt" />
     </>
   );
 };

@@ -17,9 +17,9 @@ type FeedItem =
   | { kind: 'magazine'; data: Magazine };
 
 import heroImg from '../../images/hero.jpeg';
-import service1Img from '../../images/CYA.png';
-import service2Img from '../../images/DEI.png';
-import service3Img from '../../images/ADR.png';
+import service1Img from '../../images/CYA.jpeg';
+import service2Img from '../../images/DEI.jpeg';
+import service3Img from '../../images/ADR.jpeg';
 
 const featuredServices = [
   {
@@ -139,8 +139,8 @@ const HomePage = () => {
         heightClass="min-h-screen"
       />
 
-      {/* hero(#1B6688) → value props(white) */}
-      <SectionDivider prevColor="#1B6688" nextColor="#ffffff" variant="wave" />
+      {/* hero(#0E6B96) → value props(white) */}
+      <SectionDivider prevColor="#0E6B96" nextColor="#ffffff" variant="wave" />
 
       {/* 2. Propuesta de valor */}
       <section className="py-20 bg-white">
@@ -174,8 +174,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* white(#fff) → servicios(#F2F7FA) */}
-      <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" flipX />
+      {/* white(#fff) → servicios(#F1F7FA) */}
+      <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" flipX />
 
       {/* 3. Servicios destacados */}
       <section className="py-20 bg-brand-bg-alt">
@@ -232,8 +232,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* servicios(#F2F7FA) → por qué(#1B6688) */}
-      <SectionDivider prevColor="#F2F7FA" nextColor="#1B6688" variant="wave-alt" />
+      {/* servicios(#F1F7FA) → por qué(#0E6B96) */}
+      <SectionDivider prevColor="#F1F7FA" nextColor="#0E6B96" variant="wave-alt" />
 
       {/* 4. Por qué elegirnos */}
       <section className="relative py-20 overflow-hidden text-white bg-brand-primary">
@@ -273,8 +273,8 @@ const HomePage = () => {
       {/* 5. Últimas publicaciones (blog + revistas mezclados) */}
       {!feedLoading && feedItems.length > 0 ? (
         <>
-          {/* por qué(#1B6688) → publicaciones(white) */}
-          <SectionDivider prevColor="#1B6688" nextColor="#ffffff" variant="wave" flipX />
+          {/* por qué(#0E6B96) → publicaciones(white) */}
+          <SectionDivider prevColor="#0E6B96" nextColor="#ffffff" variant="wave" flipX />
           <section className="py-20 bg-white">
             <div className="px-6 mx-auto max-w-container">
               <div className="text-center mb-14">
@@ -313,12 +313,12 @@ const HomePage = () => {
               </div>
             </div>
           </section>
-          {/* publicaciones(white) → CTA(#F2F7FA) */}
-          <SectionDivider prevColor="#ffffff" nextColor="#F2F7FA" variant="tilt" />
+          {/* publicaciones(white) → CTA(#F1F7FA) */}
+          <SectionDivider prevColor="#ffffff" nextColor="#F1F7FA" variant="tilt" />
         </>
       ) : (
-        /* por qué(#1B6688) → CTA(#F2F7FA) direct */
-        <SectionDivider prevColor="#1B6688" nextColor="#F2F7FA" variant="wave" />
+        /* por qué(#0E6B96) → CTA(#F1F7FA) direct */
+        <SectionDivider prevColor="#0E6B96" nextColor="#F1F7FA" variant="wave" />
       )}
 
       {/* 6. CTA */}

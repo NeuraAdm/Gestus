@@ -161,7 +161,7 @@ const MagazinesIndexPage = () => {
         </div>
       </div>
     </section>
-    <SectionDivider prevColor="#F8FAFC" nextColor="#1B6688" variant="wave-alt" />
+    <SectionDivider prevColor="#F8FAFC" nextColor="#0E6B96" variant="wave-alt" />
     </>
   );
 };

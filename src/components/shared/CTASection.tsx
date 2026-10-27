@@ -27,7 +27,7 @@ const CTASection = () => (
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path fill="#1B6688" d="M0,20 C360,55 1080,5 1440,20 L1440,60 L0,60 Z" />
+        <path fill="#0E6B96" d="M0,20 C360,55 1080,5 1440,20 L1440,60 L0,60 Z" />
       </svg>
     </div>
   </section>

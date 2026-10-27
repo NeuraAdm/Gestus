@@ -229,7 +229,7 @@ const BlogPostPage = () => {
         </div>
       </div>
     </section>
-    <SectionDivider prevColor="#ffffff" nextColor="#1B6688" variant="wave" />
+    <SectionDivider prevColor="#ffffff" nextColor="#0E6B96" variant="wave" />
     </>
   );
 };
