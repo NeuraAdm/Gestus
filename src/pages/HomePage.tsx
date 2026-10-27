@@ -16,10 +16,10 @@ type FeedItem =
   | { kind: 'post'; data: BlogPost }
   | { kind: 'magazine'; data: Magazine };
 
-const heroImg = "/images/hero.jpeg";
-const service1Img = "/images/CYA.png" ;
-const service2Img = "/images/DEI.png" ;
-const service3Img = "/images/ADR.png" ;
+import heroImg from '../../images/hero.jpeg';
+import service1Img from '../../images/CYA.png';
+import service2Img from '../../images/DEI.png';
+import service3Img from '../../images/ADR.png';
 
 const featuredServices = [
   {

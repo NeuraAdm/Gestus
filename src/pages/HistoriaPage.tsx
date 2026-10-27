@@ -2,7 +2,7 @@ import React from 'react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
-const heroImg = "/images/H-HS.jpeg";
+import heroImg from '../../images/H-HS.jpeg';
 
 const milestones = [
   {

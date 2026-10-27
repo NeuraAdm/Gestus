@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import HeroSection from '../components/shared/HeroSection';
-const heroImg = "/images/gestus7.jpg";
+import heroImg from '../../images/gestus7.jpg';
 
 interface Section {
   heading: string;
