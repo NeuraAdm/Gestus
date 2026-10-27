@@ -5,7 +5,7 @@ import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
 import servicesData from '../data/services';
-import heroImg from '../../images/H-services.jpeg';
+const heroImg = "/images/H-services.jpeg";
 
 const ServiciosPage = () => {
   return (

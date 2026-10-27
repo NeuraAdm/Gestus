@@ -2,22 +2,21 @@ import React from 'react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
-import heroImg from '../../images/H-EQ.jpeg';
-
-import image1 from '../../images/yeral.jpeg';
-import image2 from '../../images/oscar.jpeg';
-import image3 from '../../images/jessica.jpeg';
-import image4 from '../../images/fabian.jpeg';
-import image5 from '../../images/katerine.jpeg';
-import image6 from '../../images/daniela.jpeg';
-import image7 from '../../images/daniel.jpeg';
-import image8 from '../../images/mariana.jpeg';
-import image9 from '../../images/estefani.jpeg';
-import image10 from '../../images/luisa.jpeg';
-import image11 from '../../images/juanp.jpeg';
-import image12 from '../../images/liseth.jpeg';
-import image13 from '../../images/carlos.jpeg';
-import image14 from '../../images/girlessa.jpeg';
+const heroImg = '../../images/H-EQ.jpeg';
+const image1 = '../../images/yeral.jpeg';
+const image2 = '../../images/oscar.jpeg';
+const image3 = '../../images/jessica.jpeg';
+const image4 = '../../images/fabian.jpeg';
+const image5 = '../../images/katerine.jpeg';
+const image6 = '../../images/daniela.jpeg';
+const image7 = '../../images/daniel.jpeg';
+const image8 = '../../images/mariana.jpeg';
+const image9 = '../../images/estefani.jpeg';
+const image10 = '../../images/luisa.jpeg';
+const image11 = '../../images/juanp.jpeg';
+const image12 = '../../images/liseth.jpeg';
+const image13 = '../../images/carlos.jpeg';
+const image14 = '../../images/girlessa.jpeg';
 
 interface TeamMember {
   name: string;

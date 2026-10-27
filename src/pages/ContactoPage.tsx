@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
-import heroImg from '../../images/H-CT.jpeg';
+const heroImg = "/images/H-CT.jpeg";
 
 const serviceOptions = [
   'Consultoría y Asesoría en Sistemas de Gestión',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import HeroSection from '../components/shared/HeroSection';
-import heroImg from '../../images/gestus7.jpg';
+const heroImg = "/images/gestus7.jpg";
 
 interface Section {
   heading: string;
@@ -160,18 +160,18 @@ const PrivacidadPage = () => {
       />
 
       <section className="py-20 bg-white">
-        <div className="max-w-container mx-auto px-6">
+        <div className="px-6 mx-auto max-w-container">
           <div className="max-w-3xl mx-auto">
-            <p className="text-sm text-brand-text-sec mb-10">{config.updated}</p>
+            <p className="mb-10 text-sm text-brand-text-sec">{config.updated}</p>
 
-            <div className="prose prose-slate max-w-none space-y-10">
+            <div className="space-y-10 prose prose-slate max-w-none">
               {config.sections.map((section) => (
                 <div key={section.heading}>
-                  <h2 className="text-xl font-bold text-brand-primary mb-3">
+                  <h2 className="mb-3 text-xl font-bold text-brand-primary">
                     {section.heading}
                   </h2>
                   {section.content.map((paragraph, i) => (
-                    <p key={i} className="text-brand-text-sec leading-relaxed mb-3 text-sm">
+                    <p key={i} className="mb-3 text-sm leading-relaxed text-brand-text-sec">
                       {paragraph}
                     </p>
                   ))}
