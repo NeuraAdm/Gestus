@@ -3,7 +3,7 @@ import { CheckCircle } from 'lucide-react';
 import HeroSection from '../components/shared/HeroSection';
 import CTASection from '../components/shared/CTASection';
 import SectionDivider from '../components/shared/SectionDivider';
-import heroImg from '../../images/H-QS.jpeg';
+const heroImg = '/images/H-SQ.jpeg';
 
 const keyServices = [
   'Seguridad y Salud en el Trabajo (SG-SST)',
